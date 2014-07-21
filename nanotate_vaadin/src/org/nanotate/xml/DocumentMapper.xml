@@ -6,8 +6,10 @@
     <result column="doi" property="doi" jdbcType="VARCHAR" />
     <result column="title" property="title" jdbcType="VARCHAR" />
     <result column="full_citation" property="full_citation" jdbcType="VARCHAR" />
+    <result column="first_author" property="first_author" jdbcType="VARCHAR" />
     <result column="year" property="year" jdbcType="INTEGER" />
     <result column="uploaded_by" property="uploaded_by" jdbcType="VARCHAR" />
+    <result column="upload_date" property="upload_date" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -68,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    doc_uuid, doi, title, full_citation, year, uploaded_by
+    doc_uuid, doi, title, full_citation, first_author, year, uploaded_by, upload_date
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="org.nanotate.model.DocumentExample" >
     select
@@ -102,11 +104,11 @@
   </delete>
   <insert id="insert" parameterType="org.nanotate.model.Document" >
     insert into documents (doc_uuid, doi, title, 
-      full_citation, year, uploaded_by
-      )
+      full_citation, first_author, year, 
+      uploaded_by, upload_date)
     values (#{doc_uuid,jdbcType=VARCHAR}, #{doi,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
-      #{full_citation,jdbcType=VARCHAR}, #{year,jdbcType=INTEGER}, #{uploaded_by,jdbcType=VARCHAR}
-      )
+      #{full_citation,jdbcType=VARCHAR}, #{first_author,jdbcType=VARCHAR}, #{year,jdbcType=INTEGER}, 
+      #{uploaded_by,jdbcType=VARCHAR}, #{upload_date,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="org.nanotate.model.Document" >
     insert into documents
@@ -123,11 +125,17 @@
       <if test="full_citation != null" >
         full_citation,
       </if>
+      <if test="first_author != null" >
+        first_author,
+      </if>
       <if test="year != null" >
         year,
       </if>
       <if test="uploaded_by != null" >
         uploaded_by,
+      </if>
+      <if test="upload_date != null" >
+        upload_date,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -143,11 +151,17 @@
       <if test="full_citation != null" >
         #{full_citation,jdbcType=VARCHAR},
       </if>
+      <if test="first_author != null" >
+        #{first_author,jdbcType=VARCHAR},
+      </if>
       <if test="year != null" >
         #{year,jdbcType=INTEGER},
       </if>
       <if test="uploaded_by != null" >
         #{uploaded_by,jdbcType=VARCHAR},
+      </if>
+      <if test="upload_date != null" >
+        #{upload_date,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -172,11 +186,17 @@
       <if test="record.full_citation != null" >
         full_citation = #{record.full_citation,jdbcType=VARCHAR},
       </if>
+      <if test="record.first_author != null" >
+        first_author = #{record.first_author,jdbcType=VARCHAR},
+      </if>
       <if test="record.year != null" >
         year = #{record.year,jdbcType=INTEGER},
       </if>
       <if test="record.uploaded_by != null" >
         uploaded_by = #{record.uploaded_by,jdbcType=VARCHAR},
+      </if>
+      <if test="record.upload_date != null" >
+        upload_date = #{record.upload_date,jdbcType=TIMESTAMP},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -189,8 +209,10 @@
       doi = #{record.doi,jdbcType=VARCHAR},
       title = #{record.title,jdbcType=VARCHAR},
       full_citation = #{record.full_citation,jdbcType=VARCHAR},
+      first_author = #{record.first_author,jdbcType=VARCHAR},
       year = #{record.year,jdbcType=INTEGER},
-      uploaded_by = #{record.uploaded_by,jdbcType=VARCHAR}
+      uploaded_by = #{record.uploaded_by,jdbcType=VARCHAR},
+      upload_date = #{record.upload_date,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -207,11 +229,17 @@
       <if test="full_citation != null" >
         full_citation = #{full_citation,jdbcType=VARCHAR},
       </if>
+      <if test="first_author != null" >
+        first_author = #{first_author,jdbcType=VARCHAR},
+      </if>
       <if test="year != null" >
         year = #{year,jdbcType=INTEGER},
       </if>
       <if test="uploaded_by != null" >
         uploaded_by = #{uploaded_by,jdbcType=VARCHAR},
+      </if>
+      <if test="upload_date != null" >
+        upload_date = #{upload_date,jdbcType=TIMESTAMP},
       </if>
     </set>
     where doc_uuid = #{doc_uuid,jdbcType=VARCHAR}
@@ -221,8 +249,10 @@
     set doi = #{doi,jdbcType=VARCHAR},
       title = #{title,jdbcType=VARCHAR},
       full_citation = #{full_citation,jdbcType=VARCHAR},
+      first_author = #{first_author,jdbcType=VARCHAR},
       year = #{year,jdbcType=INTEGER},
-      uploaded_by = #{uploaded_by,jdbcType=VARCHAR}
+      uploaded_by = #{uploaded_by,jdbcType=VARCHAR},
+      upload_date = #{upload_date,jdbcType=TIMESTAMP}
     where doc_uuid = #{doc_uuid,jdbcType=VARCHAR}
   </update>
 </mapper>

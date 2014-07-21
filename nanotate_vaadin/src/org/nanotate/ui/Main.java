@@ -233,7 +233,7 @@ public class Main extends CustomComponent implements View{
 		toolbar = new Toolbar();
 		toolbar.setImmediate(false);
 		toolbar.setWidth("80%");
-		I18nButton homebutton = new I18nButton("home");
+		final I18nButton homebutton = new I18nButton("home");
 		final I18nButton viewerbutton =  new I18nButton("load-all");
 		viewerbutton.setCaption("Viewer");
 		viewerbutton.setDescription("Document viewer");
@@ -276,7 +276,7 @@ public class Main extends CustomComponent implements View{
 			@Override
 			public void buttonClick(Button.ClickEvent event) {
 				
-				
+				homebutton.click();
 				getSession().setAttribute("user", null);
 				getSession().setAttribute("facebook", null);
 				getSession().setAttribute("twitter", null);

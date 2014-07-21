@@ -399,6 +399,7 @@ public class FileUtils implements Runnable{
 				document.setDoi(doi);
 				document.setTitle(jobject.getString("title"));
 				document.setFull_citation(jobject.getString("fullCitation"));
+				document.setFirst_author(jobject.getString("fullCitation").substring(0, jobject.getString("fullCitation").indexOf(",")));
 				document.setYear(jobject.getInt("year"));
 			}
 			

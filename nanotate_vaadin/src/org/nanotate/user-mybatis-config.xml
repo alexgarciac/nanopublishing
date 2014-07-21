@@ -40,25 +40,25 @@
      <!--  <property name="enableSubPackages" value="true" />
     </javaClientGenerator>-->
   
-    <table schema="public" tableName="users"  domainObjectName="User" >
-      <property name="useActualColumnNames" value="true"/>
-    </table>
+<!--     <table schema="public" tableName="users"  domainObjectName="User" > -->
+<!--       <property name="useActualColumnNames" value="true"/> -->
+<!--     </table> -->
     
-    <table schema="public" tableName="ranges"  domainObjectName="Ranges" >
-      <property name="useActualColumnNames" value="true"/>
-    </table>
+<!--     <table schema="public" tableName="ranges"  domainObjectName="Ranges" > -->
+<!--       <property name="useActualColumnNames" value="true"/> -->
+<!--     </table> -->
     
-     <table schema="public" tableName="permissions"  domainObjectName="Permissions" >
-      <property name="useActualColumnNames" value="true"/>
-    </table>
+<!--      <table schema="public" tableName="permissions"  domainObjectName="Permissions" > -->
+<!--       <property name="useActualColumnNames" value="true"/> -->
+<!--     </table> -->
     
-     <table schema="public" tableName="tags"  domainObjectName="Tag" >
-      <property name="useActualColumnNames" value="true"/>
-    </table>
+<!--      <table schema="public" tableName="tags"  domainObjectName="Tag" > -->
+<!--       <property name="useActualColumnNames" value="true"/> -->
+<!--     </table> -->
     
-    <table schema="public" tableName="annotations"  domainObjectName="Annotation" >
-      <property name="useActualColumnNames" value="true"/>
-    </table>
+<!--     <table schema="public" tableName="annotations"  domainObjectName="Annotation" > -->
+<!--       <property name="useActualColumnNames" value="true"/> -->
+<!--     </table> -->
     
      <table schema="public" tableName="documents"  domainObjectName="Document" >
       <property name="useActualColumnNames" value="true"/>

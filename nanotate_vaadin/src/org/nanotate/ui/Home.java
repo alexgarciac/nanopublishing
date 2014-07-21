@@ -389,7 +389,7 @@ public class Home extends CustomComponent {
 		label_2.setWidth("-1px");
 		label_2.setHeight("-1px");
 		label_2.setStyleName("home-label");
-		label_2.setValue("Documents uploaded:");
+		label_2.setValue("Uploaded documents:");
 		verticalLayout_3.addComponent(label_2);
 		verticalLayout_3.setComponentAlignment(label_2, new Alignment(6));
 		

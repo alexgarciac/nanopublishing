@@ -17,20 +17,24 @@
 
 		   if(location.hash!="")
 			  {
-			   var annotation ;
-				var domannotation;
-				  $.getJSON( host+"/store/annotations/"+location.hash.substring(1), function(result) {
-						annotation=result;
+			  	if(location.hash.indexOf("username=")>0)
+			  		username=location.hash.substring(location.hash.indexOf("username=")+9);
+			  	else{
+			  		 var annotation ;
+					var domannotation;
+					  $.getJSON( host+"/store/annotations/"+location.hash.substring(1), function(result) {
+							annotation=result;
+	
+							 domannotation=$(document).xpath('/html/body/div[1]'+result.ranges[0].start);
+							  domannotation.ScrollTo({
+								    onlyIfOutside: true,
+									duration: 500,
+								    easing: 'linear'
+								});
+						});
+					}
 
-						 domannotation=$(document).xpath('/html/body/div[1]'+result.ranges[0].start);
-						  domannotation.ScrollTo({
-							    onlyIfOutside: true,
-								duration: 500,
-							    easing: 'linear'
-							});
-					});
-				  
-				  document.location.hash = "";
+				document.location.hash = "";
 			  }
 			});
 

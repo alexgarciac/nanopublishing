@@ -1,6 +1,7 @@
 package org.nanotate.model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class DocumentExample {
@@ -384,6 +385,76 @@ public class DocumentExample {
             return (Criteria) this;
         }
 
+        public Criteria andFirst_authorIsNull() {
+            addCriterion("first_author is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFirst_authorIsNotNull() {
+            addCriterion("first_author is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFirst_authorEqualTo(String value) {
+            addCriterion("first_author =", value, "first_author");
+            return (Criteria) this;
+        }
+
+        public Criteria andFirst_authorNotEqualTo(String value) {
+            addCriterion("first_author <>", value, "first_author");
+            return (Criteria) this;
+        }
+
+        public Criteria andFirst_authorGreaterThan(String value) {
+            addCriterion("first_author >", value, "first_author");
+            return (Criteria) this;
+        }
+
+        public Criteria andFirst_authorGreaterThanOrEqualTo(String value) {
+            addCriterion("first_author >=", value, "first_author");
+            return (Criteria) this;
+        }
+
+        public Criteria andFirst_authorLessThan(String value) {
+            addCriterion("first_author <", value, "first_author");
+            return (Criteria) this;
+        }
+
+        public Criteria andFirst_authorLessThanOrEqualTo(String value) {
+            addCriterion("first_author <=", value, "first_author");
+            return (Criteria) this;
+        }
+
+        public Criteria andFirst_authorLike(String value) {
+            addCriterion("first_author like", value, "first_author");
+            return (Criteria) this;
+        }
+
+        public Criteria andFirst_authorNotLike(String value) {
+            addCriterion("first_author not like", value, "first_author");
+            return (Criteria) this;
+        }
+
+        public Criteria andFirst_authorIn(List<String> values) {
+            addCriterion("first_author in", values, "first_author");
+            return (Criteria) this;
+        }
+
+        public Criteria andFirst_authorNotIn(List<String> values) {
+            addCriterion("first_author not in", values, "first_author");
+            return (Criteria) this;
+        }
+
+        public Criteria andFirst_authorBetween(String value1, String value2) {
+            addCriterion("first_author between", value1, value2, "first_author");
+            return (Criteria) this;
+        }
+
+        public Criteria andFirst_authorNotBetween(String value1, String value2) {
+            addCriterion("first_author not between", value1, value2, "first_author");
+            return (Criteria) this;
+        }
+
         public Criteria andYearIsNull() {
             addCriterion("year is null");
             return (Criteria) this;
@@ -511,6 +582,66 @@ public class DocumentExample {
 
         public Criteria andUploaded_byNotBetween(String value1, String value2) {
             addCriterion("uploaded_by not between", value1, value2, "uploaded_by");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpload_dateIsNull() {
+            addCriterion("upload_date is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpload_dateIsNotNull() {
+            addCriterion("upload_date is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpload_dateEqualTo(Date value) {
+            addCriterion("upload_date =", value, "upload_date");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpload_dateNotEqualTo(Date value) {
+            addCriterion("upload_date <>", value, "upload_date");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpload_dateGreaterThan(Date value) {
+            addCriterion("upload_date >", value, "upload_date");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpload_dateGreaterThanOrEqualTo(Date value) {
+            addCriterion("upload_date >=", value, "upload_date");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpload_dateLessThan(Date value) {
+            addCriterion("upload_date <", value, "upload_date");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpload_dateLessThanOrEqualTo(Date value) {
+            addCriterion("upload_date <=", value, "upload_date");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpload_dateIn(List<Date> values) {
+            addCriterion("upload_date in", values, "upload_date");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpload_dateNotIn(List<Date> values) {
+            addCriterion("upload_date not in", values, "upload_date");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpload_dateBetween(Date value1, Date value2) {
+            addCriterion("upload_date between", value1, value2, "upload_date");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpload_dateNotBetween(Date value1, Date value2) {
+            addCriterion("upload_date not between", value1, value2, "upload_date");
             return (Criteria) this;
         }
     }
