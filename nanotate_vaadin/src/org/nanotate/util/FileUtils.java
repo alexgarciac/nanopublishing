@@ -427,11 +427,12 @@ public class FileUtils implements Runnable{
 		try {
 			writer = new PrintWriter(path+"/var.part", "UTF-8");
 			writer.println("<script type=\"text/javascript\">");
-			writer.println("var docurl='http://local.host:8080/repository/"+docuuid+"/assets/';");
+			writer.println("var host='"+Nanotate_Properties.getInstance().getProperty("host")+"';");
+			writer.println("var docurl=host+'/repository/"+docuuid+"/assets/';");
 			if(StringUtils.isNotEmpty(doi))
 				writer.println("var docuri='"+doi+"';");
 			else
-				writer.println("var docuri='http://local.host:8080/repository/"+docuuid+"/index.html';");
+				writer.println("var docuri=host+'/repository/"+docuuid+"/index.html';");
 			writer.println("var username='"+username+"';");
 			writer.println("</script>");
 			writer.close();
