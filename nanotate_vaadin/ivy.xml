@@ -60,6 +60,7 @@
 		<dependency org="org.vaadin.addons" name="loginform" rev="0.3.3" />
 		<dependency org="org.facebook4j" name="facebook4j-core" rev="2.1.0"/>
 		<dependency org="org.twitter4j" name="twitter4j-core" rev="4.0.2"/>
+		<dependency org="org.vaadin.addons" name="activelink" rev="7.0.2" />
 
 		
 

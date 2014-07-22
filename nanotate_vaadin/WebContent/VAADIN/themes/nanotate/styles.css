@@ -537,6 +537,7 @@ overflow:hidden;
 
 }
 
+
 .annotations-panel>.v-panel-content:hover{
 	
 	background-color:rgba(210,210,213,0.5);
@@ -887,4 +888,75 @@ iframe {
 
   /* Should be unset in IE9+ I think. */
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+}
+
+.tag {
+    font-family: Helvetica, Arial, sans-serif;
+    background: #588fe5;
+    display: inline-block;
+    color: #fff;
+    position: relative;
+    padding: 10px;
+    border-radius: 10px;
+    text-decoration: none;
+    width:auto !important;
+    padding: 3px 8px;
+    margin: 1px;
+}
+
+
+ 
+.tag:hover {
+    background-color: #739fe4;
+}
+
+.tag-orange {
+    font-family: Helvetica, Arial, sans-serif;
+    background: #E55858;
+    display: inline-block;
+    color: #fff;
+    position: relative;
+    padding: 10px;
+    border-radius: 10px;
+    text-decoration: none;
+    width:auto !important;
+    padding: 3px 8px;
+    margin: 1px;
+}
+
+
+ 
+.tag-orange:hover {
+    background-color: #E09292;
+}
+ 
+
+ 
+
+
+.flow-layout{
+	display: inline-flex;
+	border-spacing:2px;
+	overflow: hidden;
+}
+
+
+.annotation-panel>*{
+
+	border-radius: 30px 30px 30px 30px;
+	border:0px;
+	display: block;
+	margin-left: auto !important;
+	margin-right: auto !important;
+	margin-top:20px;
+	overflow:hidden;
+}
+
+.date-label{
+	
+	
+	color: rgb(102, 102, 153);
+	margin-left:25px !important;
+	
+	
 }

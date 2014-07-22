@@ -25,7 +25,7 @@
 					  $.getJSON( host+"/store/annotations/"+location.hash.substring(1), function(result) {
 							annotation=result;
 	
-							 domannotation=$(document).xpath('/html/body/div[1]'+result.ranges[0].start);
+							 domannotation=$(document).xpath('/html/body/div[1]'+result.ranges[0].end);
 							  domannotation.ScrollTo({
 								    onlyIfOutside: true,
 									duration: 500,
