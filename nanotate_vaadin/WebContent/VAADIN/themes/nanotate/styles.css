@@ -287,6 +287,8 @@ push button
 .v-button.yes>.v-button-wrap:before {content:"\f00c";}
 .v-button.no>.v-button-wrap:before {content:"\f00d";}
 
+.v-button-globe>.v-button-wrap:before {content:"\f0ac";}
+
 /*********************************************** 
 toolbar class definition
 ***********************************************/
@@ -959,4 +961,8 @@ iframe {
 	margin-left:25px !important;
 	
 	
+}
+
+.annotations-toolbar{
+	padding-top:10px;
 }

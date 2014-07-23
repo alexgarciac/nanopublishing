@@ -3,6 +3,7 @@ package org.nanotate.util;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.nanotate.model.AnnotationExample;
 import org.nanotate.model.AnnotationMapper;
@@ -25,7 +26,10 @@ public class AnnotationUtils {
 			SqlSession sqlSession = MyBatis.getSession();
 			AnnotationMapper mapper = sqlSession.getMapper(AnnotationMapper.class);
 			AnnotationExample example = new AnnotationExample();
-			example.createCriteria().andUriEqualTo(doi);
+			if(StringUtils.equals(user, "all"))
+				example.createCriteria().andUriEqualTo(doi);
+			else
+				example.createCriteria().andUriEqualTo(doi).andUserEqualTo(user);
 			
 			annotations = (ArrayList<AnnotationWithBLOBs>) mapper.selectByExampleWithBLOBs(example);
 			
