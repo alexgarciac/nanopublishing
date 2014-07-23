@@ -54,9 +54,9 @@ body.loading .modal {
 
 <script type="text/javascript">
 
-var docurl='http://localhost:8080/repository/bfed7a86e2f74341b3e1f7436f5fdabf/assets/';
-var docuri='10.1037/arc0000005';
-var username='Fede';
+var docurl='http://localhost:8080/repository/7e2d623a80874767ac2806392d5ebf4f/assets/';
+var docuri='10.1037/a0031737';
+var username='Fico89';
 
 
 </script>
@@ -88,9 +88,10 @@ var username='Fede';
 
 						 domannotation=$(document).xpath('/html/body/div[1]'+result.ranges[0].start);
 						  domannotation.ScrollTo({
-							    onlyIfOutside: true,
+							    onlyIfOutside: false,
 								duration: 500,
-							    easing: 'linear'
+							    easing: 'linear',
+							    over: 0.5
 							});
 					});
 				  

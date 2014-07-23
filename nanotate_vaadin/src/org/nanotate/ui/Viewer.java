@@ -297,5 +297,15 @@ public class Viewer extends CustomComponent {
 		
 		return verticalLayout_3;
 	}
+	
+	private class AnnotationDaemon implements Runnable {
+
+		@Override
+		public void run() {
+			// TODO Auto-generated method stub
+			
+		}
+		
+	}
 
 }

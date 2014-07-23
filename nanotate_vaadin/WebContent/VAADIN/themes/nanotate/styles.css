@@ -950,7 +950,7 @@ iframe {
 	display: block;
 	margin-left: auto !important;
 	margin-right: auto !important;
-	margin-top:20px;
+	margin-top:10px;
 	overflow:hidden;
 }
 
@@ -958,11 +958,62 @@ iframe {
 	
 	
 	color: rgb(102, 102, 153);
-	margin-left:25px !important;
-	
 	
 }
 
 .annotations-toolbar{
 	padding-top:10px;
+}
+
+
+.annotation-header{
+	border:0px;
+	overflow:hidden;
+	
+}
+
+.v-panel-content-annotation-header{
+	border:0px;
+	overflow:hidden;
+	background: initial;
+	
+}
+
+.v-panel-deco-annotation-header{
+	border:0px;
+	 height: 0px;
+}
+
+.v-panel-nocaption-annotation-header{
+	border:0px;
+}
+
+.annotation-header-container{
+	background-image: url('common/img/vertical-sprites.png');
+}
+
+.quote-textarea{
+	
+	/* Initially we don't want any height, and we want the contents to be hidden */
+	max-height: 5em;
+	overflow: hidden;
+
+
+	
+	padding-left: 5px;
+padding-right: 5px;
+
+	/* Set our transitions up. */
+	-webkit-transition: max-height 0.5s ease-in-out, box-shadow 0.1s linear;
+    -moz-transition: max-height 0.5s ease-in-out, box-shadow 0.1s linear;
+    -o-transition: max-height 0.5s ease-in-out, box-shadow 0.1s linear;
+    -ms-transition: max-height 0.5s ease-in-out, box-shadow 0.1s linear;
+    transition: max-height 0.5s ease-in-out, box-shadow 0.1s linear;
+	
+}
+
+.quote-textarea:hover{
+	
+	max-height: 25em;
+	overflow: auto;
 }

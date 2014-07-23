@@ -31,6 +31,8 @@ public class AnnotationUtils {
 			else
 				example.createCriteria().andUriEqualTo(doi).andUserEqualTo(user);
 			
+			example.setOrderByClause("created DESC");
+			
 			annotations = (ArrayList<AnnotationWithBLOBs>) mapper.selectByExampleWithBLOBs(example);
 			
 			sqlSession.close();
@@ -52,6 +54,7 @@ public class AnnotationUtils {
 			TagMapper mapper = sqlSession.getMapper(TagMapper.class);
 			TagExample example = new TagExample();
 			example.createCriteria().andAnnotation_idEqualTo(annotation_uuid);
+			example.setOrderByClause("automatic_tag");
 		
 			
 			tags = (ArrayList<Tag>) mapper.selectByExample(example);
