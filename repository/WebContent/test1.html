@@ -54,8 +54,8 @@ body.loading .modal {
 
 <script type="text/javascript">
 
-var docurl='http://localhost:8080/repository/7e2d623a80874767ac2806392d5ebf4f/assets/';
-var docuri='10.1037/a0031737';
+var docurl='http://localhost:8080/repository/81a97ba8519e4ca5a99de5c20a4afaff/assets/';
+var docuri='10.1037/a0032733';
 var username='Fico89';
 
 
@@ -65,6 +65,7 @@ var username='Fico89';
 <!-- end of script variables -->
 
 <script type="text/javascript" src="https://static.view-api.box.com/scripts/docviewer.c66134787e59.js" charset="utf-8"></script>
+<script type="text/javascript" src="js/jquery.scrollTo.min.js"></script>
 <script type="text/javascript" src="js/jquery-scrollto.js"></script>
 <script type="text/javascript" src="js/jquery.hashchange.min.js"></script>
 <script type="text/javascript" src="js/jquery.xpath.js"></script>
@@ -79,25 +80,34 @@ var username='Fico89';
 		  $(window).hashchange( function(){
 			  
 
-		   if(location.hash!="")
+			  if(location.hash!="")
 			  {
-			   var annotation ;
-				var domannotation;
-				  $.getJSON( "http://localhost:8080/store/annotations/"+location.hash.substring(1), function(result) {
-						annotation=result;
-
-						 domannotation=$(document).xpath('/html/body/div[1]'+result.ranges[0].start);
-						  domannotation.ScrollTo({
-							    onlyIfOutside: false,
+			  	if(location.hash.indexOf("username=")>0)
+			  		username=location.hash.substring(location.hash.indexOf("username=")+9);
+			  	else{
+			  		
+					
+					
+	
+							 var domannotation=$(document).xpath('/html/body/div[1]'+location.hash.substring(1));
+							 domannotation.ScrollTo({
+							    onlyIfOutside: true,
 								duration: 500,
 							    easing: 'linear',
-							    over: 0.5
+							   	callback: function(){
+							   	 	$('.crocodoc-viewport').stop().scrollTo( domannotation, 800 );
+							      }
 							});
-					});
-				  
-				  document.location.hash = "";
+// 							 $('.crocodoc-viewport').stop().scrollTo( domannotation.offset(), 800 );
+							 console.log(domannotation.offset());
+
+						
+					}
+
+				document.location.hash = "";
 			  }
 			});
+
 
 		  // Trigger the event (useful on page load).
  		  
