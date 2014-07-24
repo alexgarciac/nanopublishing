@@ -1,187 +1,307 @@
 <!-- end of script variables -->
 
-<script type="text/javascript" src="https://static.view-api.box.com/scripts/docviewer.c66134787e59.js" charset="utf-8"></script>
+<script type="text/javascript"
+	src="https://static.view-api.box.com/scripts/docviewer.c66134787e59.js"
+	charset="utf-8"></script>
 <script type="text/javascript" src="../js/jquery-scrollto.js"></script>
 <script type="text/javascript" src="../js/jquery.hashchange.min.js"></script>
 <script type="text/javascript" src="../js/jquery.xpath.js"></script>
 <script type="text/javascript">
+	$(document)
+			.ready(
+					function() {
 
-	
-	
-	$( document ).ready(function() {
-		
-		
-		 // Bind the event.
-		  $(window).hashchange( function(){
-			  
+						// Bind the event.
+						$(window)
+								.hashchange(
+										function() {
 
-		   if(location.hash!="")
-			  {
-			  	if(location.hash.indexOf("username=")>0)
-			  		username=location.hash.substring(location.hash.indexOf("username=")+9);
-			  	else{
-			  		
-					
-					
-	
-							 var domannotation=$(document).xpath('/html/body/div[1]'+location.hash.substring(1));
-							  domannotation.ScrollTo({
-								    onlyIfOutside: true,
-									duration: 500,
-								    easing: 'linear'
-								});
-						
-					}
+											if (location.hash != "") {
+												if (location.hash
+														.indexOf("username=") > 0)
+													username = location.hash
+															.substring(location.hash
+																	.indexOf("username=") + 9);
+												else {
 
-				document.location.hash = "";
-			  }
-			});
+													var domannotation = $(
+															document)
+															.xpath(
+																	'/html/body/div[1]'
+																			+ location.hash
+																					.substring(1));
 
-		  // Trigger the event (useful on page load).
- 		  
-		
-  	var numPages = 0;
-	var first = true;
-	var pagesloaded = 0;
-	$( 'body' ).addClass( "loading" );
-    var viewer = Crocodoc.createViewer('.viewer', {
-        url: docurl
-    });
-    viewer.load();
-	
-	viewer.on('ready', function (event) {
-	numPages=event.data.numPages;	
-   $('body').annotator();
-   $("#doc").height($( window).height()-33);
-    $("#doc").css({ "top": "33px"});
-});
+													domannotation
+															.ScrollTo({
+																onlyIfOutside : true,
+																duration : 500,
+																easing : 'linear',
+																callback : function() {
+																	$(
+																			'.crocodoc-viewport')
+																			.animate(
+																					{
+																						scrollTop : $(
+																								'.crocodoc-viewport')
+																								.scrollTop()
+																								+ parseInt(domannotation
+																										.css('top'))
 
-viewer.on('pageload', function (event) {
-	pagesloaded++;
-	if(pagesloaded>=numPages&&first){
-		first=false;
-		 //$('body').annotator('setupPlugins');
-		 
-		 $('body').annotator('addPlugin', 'Store', {
-		       // The endpoint of the store on your server.
-		       urls: {
-    // These are the default URLs.
-					    create:  '/annotations',
-					    update:  '/annotations/:id',
-					    destroy: '/annotations/:id',
-					    search:  '/search'
-					  },
+																					});
+																}
+															});
+													// 							 $('.crocodoc-viewport').stop().scrollTo( domannotation.offset(), 800 );
+													console
+															.log(($(
+																	'.crocodoc-viewport')
+																	.scrollTop() + domannotation
+																	.css('top'))
+																	+ " "
+																	+ domannotation
+																			.offset().top);
 
-		       // Attach the uri of the current page to all annotations to allow search.
-		       annotationData: {
-		         'uri': docuri
-		       },
+												}
 
-		       // This will perform a "search" action when the plugin loads. Will
-		       // request the last 20 annotations for the current url.
-		       // eg. /store/endpoint/search?limit=20&uri=http://this/document/only
-		       loadFromSearch: {
-		         'limit': 20,
-		         'uri': docuri
-		       }
-		     });
-		 
-		 
-		 $('body').annotator('addPlugin','Permissions', {
-			 user: username,
-			  permissions: {
-			    'read':   [],
-			    'update': [username],
-			    'delete': [username],
-			    'admin':  [username]
-			  }
-			});
-		 
-		 $('body').annotator('addPlugin', 'Tags');
-		 
-		 $('body').annotator('addPlugin', 'Filter', {
-			  filters: [
-			    {
-			      label: 'Tag',
-			      property: 'tags',
-			      isFiltered: function (input, tags) {
-			        if (input && tags && tags.length) {
-			          var keywords = input.split(/\s+/g);
-			          for (var i = 0; i < keywords.length; i += 1) {
-			            for (var j = 0; j < tags.length; j += 1) {
-			              if (tags[j].indexOf(keywords[i]) !== -1) {
-			                return true;
-			              }
-			            }
-			          }
-			        }
-			        return false;
-			    }},
-			    {
-				      label: 'User',
-				      property: 'user',
-				}
-			    
-			    
-			  ]
-			});
-// 		 var optionstags = {
-// 		    		tag: "imagery:red,parallelism:blue,sound:green,anaphora:orange"
-// 				};
+												document.location.hash = "";
+											}
+										});
 
-// 			$( 'body' ).annotator('addPlugin','HighlightTags',optionstags);
-		$( 'body' ).removeClass( "loading" );
-		$( 'body' ).addClass( "theme-light ready");
-		
-		$(window).hashchange();
-		
-		$( 'html' ).css({ "padding-top": "0px"});
-	
-		 $('.annotator-filter-next').first().on('click',function(){
-   //action on click
-}).mouseup(function(){
- 
-       setTimeout(function(){ $('.annotator-hl-active').first().ScrollTo({
-    onlyIfOutside: true,
-	duration: 500,
-    easing: 'linear'
-});}, 30);
+						// Trigger the event (useful on page load).
 
-});
-		
- $('.annotator-filter-previous').first().on('click',function(){
-   //action on click
-}).mouseup(function(){
- 
-       setTimeout(function(){ $('.annotator-hl-active').first().ScrollTo({
-    onlyIfOutside: true,
-	duration: 500,
-    easing: 'linear'
-});}, 30);
-       
-       
-       
+						var numPages = 0;
+						var first = true;
+						var pagesloaded = 0;
+						$('body').addClass("loading");
+						var viewer = Crocodoc.createViewer('.viewer', {
+							url : docurl
+						});
+						viewer.load();
 
-});
-	}
-   
-});	
+						viewer.on('ready', function(event) {
+							numPages = event.data.numPages;
+							$('body').annotator();
+							$("#doc").height($(window).height() - 33);
+							$("#doc").css({
+								"top" : "33px"
+							});
+						});
 
+						viewer
+								.on(
+										'pageload',
+										function(event) {
+											pagesloaded++;
+											if (pagesloaded >= numPages
+													&& first) {
+												first = false;
+												//$('body').annotator('setupPlugins');
 
-});
+												$('body')
+														.annotator(
+																'addPlugin',
+																'Store',
+																{
+																	// The endpoint of the store on your server.
+																	urls : {
+																		// These are the default URLs.
+																		create : '/annotations',
+																		update : '/annotations/:id',
+																		destroy : '/annotations/:id',
+																		search : '/search'
+																	},
 
+																	// Attach the uri of the current page to all annotations to allow search.
+																	annotationData : {
+																		'uri' : docuri
+																	},
 
+																	// This will perform a "search" action when the plugin loads. Will
+																	// request the last 20 annotations for the current url.
+																	// eg. /store/endpoint/search?limit=20&uri=http://this/document/only
+																	loadFromSearch : {
+																		'limit' : 20,
+																		'uri' : docuri
+																	}
+																});
 
+												$('body')
+														.annotator(
+																'addPlugin',
+																'Permissions',
+																{
+																	user : username,
+																	permissions : {
+																		'read' : [],
+																		'update' : [ username ],
+																		'delete' : [ username ],
+																		'admin' : [ username ]
+																	}
+																});
 
+												$('body').annotator(
+														'addPlugin', 'Tags');
 
-	
+												$('body')
+														.annotator(
+																'addPlugin',
+																'Filter',
+																{
+																	filters : [
+																			{
+																				label : 'Tag',
+																				property : 'tags',
+																				isFiltered : function(
+																						input,
+																						tags) {
+																					if (input
+																							&& tags
+																							&& tags.length) {
+																						var keywords = input
+																								.split(/\s+/g);
+																						for (var i = 0; i < keywords.length; i += 1) {
+																							for (var j = 0; j < tags.length; j += 1) {
+																								if (tags[j]
+																										.indexOf(keywords[i]) !== -1) {
+																									return true;
+																								}
+																							}
+																						}
+																					}
+																					return false;
+																				}
+																			},
+																			{
+																				label : 'User',
+																				property : 'user',
+																			}
+
+																	]
+																});
+												// 		 var optionstags = {
+												// 		    		tag: "imagery:red,parallelism:blue,sound:green,anaphora:orange"
+												// 				};
+
+												// 			$( 'body' ).annotator('addPlugin','HighlightTags',optionstags);
+												$('body')
+														.removeClass("loading");
+												$('body').addClass(
+														"theme-light ready");
+
+												$(window).hashchange();
+
+												$('html').css({
+													"padding-top" : "0px"
+												});
+
+												$('.annotator-filter-next')
+														.first()
+														.on('click',
+																function() {
+																	//action on click
+																})
+														.mouseup(
+																function() {
+																	var dom = $(
+																			'.annotator-hl-active')
+																			.first()
+																			.parent();
+																	setTimeout(
+																			function() {
+																				$(
+																						'.annotator-hl-active')
+																						.first()
+																						.ScrollTo(
+																								{
+																									onlyIfOutside : true,
+																									duration : 500,
+																									easing : 'linear',
+																									callback : function() {
+
+																										console
+																												.log(parseInt(dom
+																														.css('top')));
+																										$(
+																												'.crocodoc-viewport')
+																												.animate(
+																														{
+																															scrollTop : $(
+																																	'.crocodoc-viewport')
+																																	.scrollTop()
+																																	+ parseInt($(
+																																			'.annotator-hl-active')
+																																			.first()
+																																			.parent()
+																																			.css(
+																																					'top'))
+
+																														});
+																									}
+																								});
+																			},
+																			50);
+
+																});
+
+												$('.annotator-filter-previous')
+														.first()
+														.on('click',
+																function() {
+																	//action on click
+																})
+														.mouseup(
+																function() {
+																	var dom = $(
+																			'.annotator-hl-active')
+																			.first()
+																			.parent();
+																	setTimeout(
+																			function() {
+																				$(
+																						'.annotator-hl-active')
+																						.first()
+																						.ScrollTo(
+																								{
+																									onlyIfOutside : true,
+																									duration : 500,
+																									easing : 'linear',
+																									callback : function() {
+
+																										console
+																												.log(parseInt(dom
+																														.css('top')));
+																										$(
+																												'.crocodoc-viewport')
+																												.animate(
+																														{
+																															scrollTop : $(
+																																	'.crocodoc-viewport')
+																																	.scrollTop()
+																																	+ parseInt($(
+																																			'.annotator-hl-active')
+																																			.first()
+																																			.parent()
+																																			.css(
+																																					'top'))
+
+																														});
+																									}
+																								});
+																			},
+																			50);
+
+																});
+											}
+
+										});
+
+					});
 </script>
 </head>
 
 <body>
 
-<div id="doc" class="viewer"></div>
-<div class="modal"></div>
+	<div id="doc" class="viewer"></div>
+	<div class="modal"></div>
 
 
 </body>

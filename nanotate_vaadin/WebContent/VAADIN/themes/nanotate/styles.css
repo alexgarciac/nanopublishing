@@ -904,6 +904,7 @@ iframe {
     width:auto !important;
     padding: 3px 8px;
     margin: 1px;
+    text-transform:lowercase;
 }
 
 
@@ -924,6 +925,7 @@ iframe {
     width:auto !important;
     padding: 3px 8px;
     margin: 1px;
+    text-transform:lowercase;
 }
 
 
