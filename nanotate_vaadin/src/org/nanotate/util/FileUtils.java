@@ -317,7 +317,7 @@ public class FileUtils implements Runnable{
 				System.out.println("doi_begin_index= "+ doi_begin_index);
 				System.out.println("doi_end_index= "+ doi_end_index);
 				
-				doi= text.substring(doi_begin_index, doi_end_index)
+				doi= "http://dx.doi.org/"+text.substring(doi_begin_index, doi_end_index)
 						.replace("\n", "")
 						.replace(" ", "")
 						.replace("\r", "")

@@ -33,9 +33,10 @@ import org.json.JSONObject;
 		@Override
 		public void run() {
 			
-			String result = getBioportalAnnotations(text);
-			ArrayList<String> array = getTagsFromJSON(result);
-			this.createTags(uuid, array);
+			String json = getBioportalAnnotations(text);
+			this.createBioportalAnnotation(uuid, json);
+			ArrayList<String> array = getTagsFromJSON(json);
+			this.createBioportalTags(uuid, array);
 			
 		}
 		
@@ -140,7 +141,7 @@ import org.json.JSONObject;
 			return array;
 		}
 		
-		private void createTags(String id, ArrayList<String> tags) {
+		private void createBioportalTags(String id, ArrayList<String> tags) {
 
 			PreparedStatement preparedStmt = null;
 
@@ -159,6 +160,56 @@ import org.json.JSONObject;
 					preparedStmt.setString(1, id);
 					preparedStmt.setString(2, tag);
 					preparedStmt.setBoolean(3, true);
+
+
+
+					// execute the preparedstatement
+					preparedStmt.execute();
+
+
+			}
+			catch (SQLException ex) {
+				// handle any errors
+				System.out.println("SQLException: " + ex.getMessage());
+				System.out.println("SQLState: " + ex.getSQLState());
+				System.out.println("VendorError: " + ex.getErrorCode());
+			} finally {
+				// it is a good idea to release
+				// resources in a finally{} block
+				// in reverse-order of their creation
+				// if they are no-longer needed
+
+				if (preparedStmt != null) {
+					try {
+						preparedStmt.close();
+					} catch (SQLException sqlEx) { } // ignore
+
+					preparedStmt = null;
+				}
+
+
+			}
+
+		}
+		
+		private void createBioportalAnnotation(String id, String json) {
+
+			PreparedStatement preparedStmt = null;
+
+			
+				try
+			{
+					String query = "INSERT INTO bioportal_annotations(annotation_id, json) "
+							+ "VALUES (?,?)";
+					// create the mysql database connection
+
+					// create the mysql delete statement.
+					// i'm deleting the row where the id is "3", which corresponds to my
+					// "Barney Rubble" record.
+
+					preparedStmt = conn.prepareStatement(query);
+					preparedStmt.setString(1, id);
+					preparedStmt.setString(2, json);
 
 
 

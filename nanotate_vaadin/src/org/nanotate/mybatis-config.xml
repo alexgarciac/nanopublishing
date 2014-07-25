@@ -24,5 +24,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<mapper resource="org/nanotate/xml/RangesMapper.xml" />
 	<mapper resource="org/nanotate/xml/PermissionsMapper.xml" />
 	<mapper resource="org/nanotate/xml/TagMapper.xml" />
+	<mapper resource="org/nanotate/xml/FacebookPostMapper.xml" />
+	<mapper resource="org/nanotate/xml/TwitterPostMapper.xml" />
 </mappers>
 </configuration>

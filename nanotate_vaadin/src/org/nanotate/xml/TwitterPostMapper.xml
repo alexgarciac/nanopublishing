@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.nanotate.model.TwitterPostMapper" >
+  <resultMap id="BaseResultMap" type="org.nanotate.model.TwitterPost" >
+    <id column="twitter_post_id" property="twitter_post_id" jdbcType="INTEGER" />
+    <id column="annotation_id" property="annotation_id" jdbcType="VARCHAR" />
+    <result column="twitter_post_url" property="twitter_post_url" jdbcType="VARCHAR" />
+    <result column="automatic_post" property="automatic_post" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    twitter_post_id, annotation_id, twitter_post_url, automatic_post
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="org.nanotate.model.TwitterPostExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from twitter_posts
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="org.nanotate.model.TwitterPostKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from twitter_posts
+    where twitter_post_id = #{twitter_post_id,jdbcType=INTEGER}
+      and annotation_id = #{annotation_id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="org.nanotate.model.TwitterPostKey" >
+    delete from twitter_posts
+    where twitter_post_id = #{twitter_post_id,jdbcType=INTEGER}
+      and annotation_id = #{annotation_id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="org.nanotate.model.TwitterPostExample" >
+    delete from twitter_posts
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="org.nanotate.model.TwitterPost" >
+    insert into twitter_posts (twitter_post_id, annotation_id, twitter_post_url, 
+      automatic_post)
+    values (#{twitter_post_id,jdbcType=INTEGER}, #{annotation_id,jdbcType=VARCHAR}, #{twitter_post_url,jdbcType=VARCHAR}, 
+      #{automatic_post,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="org.nanotate.model.TwitterPost" >
+    insert into twitter_posts
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="twitter_post_id != null" >
+        twitter_post_id,
+      </if>
+      <if test="annotation_id != null" >
+        annotation_id,
+      </if>
+      <if test="twitter_post_url != null" >
+        twitter_post_url,
+      </if>
+      <if test="automatic_post != null" >
+        automatic_post,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="twitter_post_id != null" >
+        #{twitter_post_id,jdbcType=INTEGER},
+      </if>
+      <if test="annotation_id != null" >
+        #{annotation_id,jdbcType=VARCHAR},
+      </if>
+      <if test="twitter_post_url != null" >
+        #{twitter_post_url,jdbcType=VARCHAR},
+      </if>
+      <if test="automatic_post != null" >
+        #{automatic_post,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="org.nanotate.model.TwitterPostExample" resultType="java.lang.Integer" >
+    select count(*) from twitter_posts
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update twitter_posts
+    <set >
+      <if test="record.twitter_post_id != null" >
+        twitter_post_id = #{record.twitter_post_id,jdbcType=INTEGER},
+      </if>
+      <if test="record.annotation_id != null" >
+        annotation_id = #{record.annotation_id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.twitter_post_url != null" >
+        twitter_post_url = #{record.twitter_post_url,jdbcType=VARCHAR},
+      </if>
+      <if test="record.automatic_post != null" >
+        automatic_post = #{record.automatic_post,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update twitter_posts
+    set twitter_post_id = #{record.twitter_post_id,jdbcType=INTEGER},
+      annotation_id = #{record.annotation_id,jdbcType=VARCHAR},
+      twitter_post_url = #{record.twitter_post_url,jdbcType=VARCHAR},
+      automatic_post = #{record.automatic_post,jdbcType=BIT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="org.nanotate.model.TwitterPost" >
+    update twitter_posts
+    <set >
+      <if test="twitter_post_url != null" >
+        twitter_post_url = #{twitter_post_url,jdbcType=VARCHAR},
+      </if>
+      <if test="automatic_post != null" >
+        automatic_post = #{automatic_post,jdbcType=BIT},
+      </if>
+    </set>
+    where twitter_post_id = #{twitter_post_id,jdbcType=INTEGER}
+      and annotation_id = #{annotation_id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.nanotate.model.TwitterPost" >
+    update twitter_posts
+    set twitter_post_url = #{twitter_post_url,jdbcType=VARCHAR},
+      automatic_post = #{automatic_post,jdbcType=BIT}
+    where twitter_post_id = #{twitter_post_id,jdbcType=INTEGER}
+      and annotation_id = #{annotation_id,jdbcType=VARCHAR}
+  </update>
+</mapper>

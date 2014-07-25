@@ -4,66 +4,80 @@
   "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 
 <generatorConfiguration>
- <!-- Ubicación del JAR JDBC del gestor de Base de datos a usar, en este caso MySQL  -->
- <!-- 
- <classPathEntry location="/nanotate/WebContent/WEB-INF/lib/postgresql-9.3-1101.jdbc3.jar" />-->
- 
- <classPathEntry location="/Users/developer3/git/nanotate/store/target/store/WEB-INF/lib/mysql-connector-java-5.1.30.jar" />
+	<!-- Ubicación del JAR JDBC del gestor de Base de datos a usar, en este 
+		caso MySQL -->
+	<!-- <classPathEntry location="/nanotate/WebContent/WEB-INF/lib/postgresql-9.3-1101.jdbc3.jar" 
+		/> -->
 
-  <!--  Generaremos para MyBatis versión 3 -->
-  <context id="Test" targetRuntime="MyBatis3">
-    
-    <!-- No generamos los comentarios -->
-    <commentGenerator>
-      <property name="suppressAllComments" value="true"/>
-    </commentGenerator>
-    
-      <!--  Parámetros de conexión a la bd -->
-    <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-        connectionURL="jdbc:mysql://localhost:3306/annotatorjs"
-        userId="annotatorjs"
-        password="annotator7541">
-    </jdbcConnection>
+	<classPathEntry
+		location="/Users/developer3/git/nanotate/store/target/store/WEB-INF/lib/mysql-connector-java-5.1.30.jar" />
 
-     
-    <javaModelGenerator targetPackage="org.nanotate.model" targetProject="nanotate_vaadin"/>
-    <!--   <property name="enableSubPackages" value="true" />
-    </javaModelGenerator>-->
+	<!-- Generaremos para MyBatis versión 3 -->
+	<context id="Test" targetRuntime="MyBatis3">
 
-    <sqlMapGenerator targetPackage="org.nanotate.xml"  targetProject="nanotate_vaadin" />
-   <!--    <property name="enableSubPackages" value="true" />
-    </sqlMapGenerator>-->
-    
-    
- <!-- También podríamos indicar el tipo ANNOTATEDMAPPER -->
-    <javaClientGenerator type="XMLMAPPER" targetPackage="org.nanotate.model"  targetProject="nanotate_vaadin"/>
-     <!--  <property name="enableSubPackages" value="true" />
-    </javaClientGenerator>-->
-  
-<!--     <table schema="public" tableName="users"  domainObjectName="User" > -->
-<!--       <property name="useActualColumnNames" value="true"/> -->
-<!--     </table> -->
-    
-<!--     <table schema="public" tableName="ranges"  domainObjectName="Ranges" > -->
-<!--       <property name="useActualColumnNames" value="true"/> -->
-<!--     </table> -->
-    
-<!--      <table schema="public" tableName="permissions"  domainObjectName="Permissions" > -->
-<!--       <property name="useActualColumnNames" value="true"/> -->
-<!--     </table> -->
-    
-<!--      <table schema="public" tableName="tags"  domainObjectName="Tag" > -->
-<!--       <property name="useActualColumnNames" value="true"/> -->
-<!--     </table> -->
-    
-<!--     <table schema="public" tableName="annotations"  domainObjectName="Annotation" > -->
-<!--       <property name="useActualColumnNames" value="true"/> -->
-<!--     </table> -->
-    
-     <table schema="public" tableName="documents"  domainObjectName="Document" >
-      <property name="useActualColumnNames" value="true"/>
-     </table>
-    
-  </context>
-  
+		<!-- No generamos los comentarios -->
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+
+		<!-- Parámetros de conexión a la bd -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://localhost:3306/annotatorjs" userId="annotatorjs"
+			password="annotator7541" />
+
+
+
+		<javaModelGenerator targetPackage="org.nanotate.model"
+			targetProject="nanotate_vaadin" />
+		<!-- <property name="enableSubPackages" value="true" /> </javaModelGenerator> -->
+
+		<sqlMapGenerator targetPackage="org.nanotate.xml"
+			targetProject="nanotate_vaadin" />
+		<!-- <property name="enableSubPackages" value="true" /> </sqlMapGenerator> -->
+
+
+		<!-- También podríamos indicar el tipo ANNOTATEDMAPPER -->
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="org.nanotate.model" targetProject="nanotate_vaadin" />
+		<!-- <property name="enableSubPackages" value="true" /> </javaClientGenerator> -->
+
+		<!-- <table schema="public" tableName="users" domainObjectName="User" > -->
+		<!-- <property name="useActualColumnNames" value="true"/> -->
+		<!-- </table> -->
+
+		<!-- <table schema="public" tableName="ranges" domainObjectName="Ranges" 
+			> -->
+		<!-- <property name="useActualColumnNames" value="true"/> -->
+		<!-- </table> -->
+
+		<!-- <table schema="public" tableName="permissions" domainObjectName="Permissions" 
+			> -->
+		<!-- <property name="useActualColumnNames" value="true"/> -->
+		<!-- </table> -->
+
+		<!-- <table schema="public" tableName="tags" domainObjectName="Tag" > -->
+		<!-- <property name="useActualColumnNames" value="true"/> -->
+		<!-- </table> -->
+
+		<!-- <table schema="public" tableName="annotations" domainObjectName="Annotation" 
+			> -->
+		<!-- <property name="useActualColumnNames" value="true"/> -->
+		<!-- </table> -->
+
+		<!-- <table schema="public" tableName="documents" domainObjectName="Document" 
+			> -->
+		<!-- <property name="useActualColumnNames" value="true"/> -->
+		<!-- </table> -->
+		
+		<table schema="public" tableName="facebook_posts" domainObjectName="FacebookPost">
+			<property name="useActualColumnNames" value="true" />
+		</table>
+		
+		<table schema="public" tableName="twitter_posts" domainObjectName="TwitterPost">
+			<property name="useActualColumnNames" value="true" />
+		</table>
+
+
+	</context>
+
 </generatorConfiguration>

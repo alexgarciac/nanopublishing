@@ -12,12 +12,15 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.UUID;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import org.annotatorjs.model.Annotation;
 import org.annotatorjs.model.Permissions;
 import org.annotatorjs.model.Range;
 import org.annotatorjs.store.StoreProperties;
 import org.annotatorjs.util.BioportalThread;
+import org.annotatorjs.util.SocialThread;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -610,8 +613,15 @@ public class Connector {
 			createPermissions(uuid, annotation.getPermissions());
 		
 		BioportalThread bioThread = new BioportalThread(this.conn, uuid, annotation.getQuote());
-		Thread thread = new Thread(bioThread);
-		thread.start();
+				
+		SocialThread socialThread = new SocialThread(this.conn, uuid,  annotation);
+		
+		
+		
+		ExecutorService pool = Executors.newSingleThreadExecutor();
+		pool.submit(bioThread);
+		pool.submit(socialThread);
+		pool.shutdown(); //no more tasks can be submitted, running tasks are not interrupted
 		
 		return uuid;
 
@@ -1002,7 +1012,7 @@ public class Connector {
 
 
 	public ArrayList<Annotation> searchAnnotationsByUriComplete(String uri, int i) {
-		System.out.println(uri);
+
 		return completeAnnotations(searchAnnotationsByUri(uri,i));
 
 	}
