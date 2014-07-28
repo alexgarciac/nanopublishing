@@ -29,6 +29,7 @@ import com.vaadin.data.Property;
 import com.vaadin.data.util.ObjectProperty;
 import com.vaadin.event.MouseEvents.ClickEvent;
 import com.vaadin.event.MouseEvents.ClickListener;
+import com.vaadin.server.BrowserWindowOpener;
 import com.vaadin.server.ClassResource;
 import com.vaadin.server.ExternalResource;
 import com.vaadin.shared.ui.MarginInfo;
@@ -146,38 +147,21 @@ public class AnnotationUI extends CustomComponent {
 		gridLayout_1.setColumnExpandRatio(0, 2);
 		gridLayout_1.setMargin(new MarginInfo(true,true,false,true));
 		
-		/***********************
-		Sample C
-		***********************/
-		/*
-		create the window
-		*/
-		final ActionWindow dummyB = new ActionWindow("Dummy form", new Action[]{
-			new Action("yes", ActionWindow.OK),
-			new Action("no", ActionWindow.CANCEL)
-		}) {
-			Property<Boolean> data = new ObjectProperty<Boolean>(false);
+		if(getSession().getAttribute("twitter")==null)
+			TweetComposerWindow.setTwitter_conected(false);
+		else
+			TweetComposerWindow.setTwitter_conected(true);
+		
+		
+		// Create an opener extension
+		BrowserWindowOpener opener =
+		    new BrowserWindowOpener(TweetComposerWindow.class);
+		opener.setFeatures("height=200,width=300,resizable");
 
-			{
-				center();
-				getInnerContent().addComponent(new Label("<h1>Terms of use</h1>", ContentMode.HTML));
-				getInnerContent().addComponent(new Label("<p>blablabla<br/>re blablabla</p>", ContentMode.HTML));
 
-				CheckBox check = new CheckBox("You must accept the terms", data);
-				check.addValueChangeListener(new Property.ValueChangeListener() {
-
-					@Override
-					public void valueChange(Property.ValueChangeEvent event) {
-						getButton(ActionWindow.OK).setEnabled(data.getValue());
-					}
-				});
-
-				check.setImmediate(true);
-
-				getInnerContent().addComponent(check);
-				getButton(ActionWindow.OK).setEnabled(data.getValue());
-			}
-		};
+		// Attach it to a button
+		
+		opener.extend(panel_2);
 
 		ClickListener twitterlistener = new ClickListener(){
 
