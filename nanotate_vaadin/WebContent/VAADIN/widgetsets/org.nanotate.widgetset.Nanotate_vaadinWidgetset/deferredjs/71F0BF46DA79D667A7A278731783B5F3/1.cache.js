@@ -1,1 +1,0 @@
-$wnd.org_nanotate_widgetset_Nanotate_vaadinWidgetset.runAsyncCallback1('w8(1207,1,Uod);_.nc=function z$b(){PPb((!KPb&&(KPb=new QPb),KPb),this.b.e)};Xcd(Vh)(1);\n//# sourceURL=org.nanotate.widgetset.Nanotate_vaadinWidgetset-1.js\n')

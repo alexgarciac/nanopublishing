@@ -20,7 +20,7 @@ public class TweetComposerWindow extends UI {
         getPage().setTitle("Send nanotate to twitter!");
         
        
-        setContent(new TweetComposer());
+        
     }
 
 	public static boolean isTwitter_conected() {

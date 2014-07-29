@@ -37,6 +37,7 @@ import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.Accordion;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.CheckBox;
+import com.vaadin.ui.Component;
 import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.Embedded;
@@ -46,8 +47,12 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.Link;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.Panel;
+import com.vaadin.ui.PopupView;
 import com.vaadin.ui.TextArea;
+import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.Notification.Type;
+import com.vaadin.ui.PopupView.PopupVisibilityEvent;
 
 import facebook4j.Facebook;
 import facebook4j.FacebookException;
@@ -107,6 +112,8 @@ public class AnnotationUI extends CustomComponent {
 	private ArrayList<Tag> tags;
 	private AnnotationWithBLOBs annotation;
 	private Ranges range;
+	
+	PopupView popup;
 
 
 	public AnnotationUI() {
@@ -148,16 +155,18 @@ public class AnnotationUI extends CustomComponent {
 		gridLayout_1.setMargin(new MarginInfo(true,true,false,true));
 		
 		
+		popup = new PopupView(new PopupTextFieldContent());
 		
-		// Create an opener extension
-		BrowserWindowOpener opener =
-		    new BrowserWindowOpener(TweetComposerWindow.class);
-		opener.setFeatures("height=200,width=300,resizable");
-
-
-		// Attach it to a button
 		
-		opener.extend(panel_2);
+		
+		
+		horizontalLayout_2.addComponent(popup);
+		horizontalLayout_2.setComponentAlignment(popup, new Alignment(20));
+		
+		popup.setHideOnMouseOut(true);
+		popup.setStyleName("display-none");
+		
+		
 
 		ClickListener twitterlistener = new ClickListener(){
 
@@ -167,8 +176,9 @@ public class AnnotationUI extends CustomComponent {
 					Notification.show("You must connect with Twitter first",
 			                  "Go to Home screen to connect with Twitter",
 			                  Notification.Type.WARNING_MESSAGE);
+			
 				else{
-					
+					popup.setPopupVisible(true);
 				}
 			}};
 
@@ -591,6 +601,30 @@ public class AnnotationUI extends CustomComponent {
 		
 		
 	}
+	
+	// Create a dynamically updating content for the popup
+    public class PopupTextFieldContent implements com.vaadin.ui.PopupView.Content {
+        private final TweetComposer tweetComposer = new TweetComposer(popup, annotation);
+
+        @Override
+        public final Component getPopupComponent() {
+            return tweetComposer;
+        }
+
+        @Override
+        public final String getMinimizedValueAsHTML() {
+            return ".";
+        }
+    };
+
+ 
+
+
+    public final void popupVisibilityChange(final PopupVisibilityEvent event) {
+        final String message = "Popup "
+                + (event.isPopupVisible() ? "opened" : "closed");
+        Notification.show(message, Type.TRAY_NOTIFICATION);
+    }	
 
 
 }

@@ -25,4 +25,16 @@
 
 
     <inherits name="com.wcs.wcslib.vaadin.widget.multifileupload.MultiFileUploadWidgetSet" />
+
+    <inherits name="org.vaadin.activelink.ActivelinkWidgetset" />
+
+    <inherits name="org.vaadin.jouni.dom.DomWidgetset" />
+
+    <inherits name="org.vaadin.jouni.animator.AnimatorWidgetset" />
+
+    <inherits name="org.vaadin.hene.popupbutton.widgetset.PopupbuttonWidgetset" />
+
+    <inherits name="com.ejt.vaadin.loginform.WidgetSet" />
+
+    <inherits name="org.vaadin.csvalidation.widgetset.CSValidationWidgetset" />
 </module>
