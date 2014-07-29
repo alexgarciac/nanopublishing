@@ -147,10 +147,6 @@ public class AnnotationUI extends CustomComponent {
 		gridLayout_1.setColumnExpandRatio(0, 2);
 		gridLayout_1.setMargin(new MarginInfo(true,true,false,true));
 		
-		if(getSession().getAttribute("twitter")==null)
-			TweetComposerWindow.setTwitter_conected(false);
-		else
-			TweetComposerWindow.setTwitter_conected(true);
 		
 		
 		// Create an opener extension
