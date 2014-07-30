@@ -9,6 +9,7 @@
     <result column="uri" property="uri" jdbcType="VARCHAR" />
     <result column="user" property="user" jdbcType="VARCHAR" />
     <result column="consumer" property="consumer" jdbcType="VARCHAR" />
+    <result column="status_completed" property="status_completed" jdbcType="BIT" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="org.nanotate.model.AnnotationWithBLOBs" extends="BaseResultMap" >
     <result column="text" property="text" jdbcType="LONGVARCHAR" />
@@ -73,7 +74,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    annotation_id, annotator_schema_version, created, updated, uri, user, consumer
+    annotation_id, annotator_schema_version, created, updated, uri, user, consumer, status_completed
   </sql>
   <sql id="Blob_Column_List" >
     text, quote
@@ -129,12 +130,12 @@
   <insert id="insert" parameterType="org.nanotate.model.AnnotationWithBLOBs" >
     insert into annotations (annotation_id, annotator_schema_version, 
       created, updated, uri, 
-      user, consumer, text, 
-      quote)
+      user, consumer, status_completed, 
+      text, quote)
     values (#{annotation_id,jdbcType=VARCHAR}, #{annotator_schema_version,jdbcType=VARCHAR}, 
       #{created,jdbcType=TIMESTAMP}, #{updated,jdbcType=TIMESTAMP}, #{uri,jdbcType=VARCHAR}, 
-      #{user,jdbcType=VARCHAR}, #{consumer,jdbcType=VARCHAR}, #{text,jdbcType=LONGVARCHAR}, 
-      #{quote,jdbcType=LONGVARCHAR})
+      #{user,jdbcType=VARCHAR}, #{consumer,jdbcType=VARCHAR}, #{status_completed,jdbcType=BIT}, 
+      #{text,jdbcType=LONGVARCHAR}, #{quote,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="org.nanotate.model.AnnotationWithBLOBs" >
     insert into annotations
@@ -159,6 +160,9 @@
       </if>
       <if test="consumer != null" >
         consumer,
+      </if>
+      <if test="status_completed != null" >
+        status_completed,
       </if>
       <if test="text != null" >
         text,
@@ -188,6 +192,9 @@
       </if>
       <if test="consumer != null" >
         #{consumer,jdbcType=VARCHAR},
+      </if>
+      <if test="status_completed != null" >
+        #{status_completed,jdbcType=BIT},
       </if>
       <if test="text != null" >
         #{text,jdbcType=LONGVARCHAR},
@@ -227,6 +234,9 @@
       <if test="record.consumer != null" >
         consumer = #{record.consumer,jdbcType=VARCHAR},
       </if>
+      <if test="record.status_completed != null" >
+        status_completed = #{record.status_completed,jdbcType=BIT},
+      </if>
       <if test="record.text != null" >
         text = #{record.text,jdbcType=LONGVARCHAR},
       </if>
@@ -247,6 +257,7 @@
       uri = #{record.uri,jdbcType=VARCHAR},
       user = #{record.user,jdbcType=VARCHAR},
       consumer = #{record.consumer,jdbcType=VARCHAR},
+      status_completed = #{record.status_completed,jdbcType=BIT},
       text = #{record.text,jdbcType=LONGVARCHAR},
       quote = #{record.quote,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
@@ -261,7 +272,8 @@
       updated = #{record.updated,jdbcType=TIMESTAMP},
       uri = #{record.uri,jdbcType=VARCHAR},
       user = #{record.user,jdbcType=VARCHAR},
-      consumer = #{record.consumer,jdbcType=VARCHAR}
+      consumer = #{record.consumer,jdbcType=VARCHAR},
+      status_completed = #{record.status_completed,jdbcType=BIT}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -287,6 +299,9 @@
       <if test="consumer != null" >
         consumer = #{consumer,jdbcType=VARCHAR},
       </if>
+      <if test="status_completed != null" >
+        status_completed = #{status_completed,jdbcType=BIT},
+      </if>
       <if test="text != null" >
         text = #{text,jdbcType=LONGVARCHAR},
       </if>
@@ -304,6 +319,7 @@
       uri = #{uri,jdbcType=VARCHAR},
       user = #{user,jdbcType=VARCHAR},
       consumer = #{consumer,jdbcType=VARCHAR},
+      status_completed = #{status_completed,jdbcType=BIT},
       text = #{text,jdbcType=LONGVARCHAR},
       quote = #{quote,jdbcType=LONGVARCHAR}
     where annotation_id = #{annotation_id,jdbcType=VARCHAR}
@@ -315,7 +331,8 @@
       updated = #{updated,jdbcType=TIMESTAMP},
       uri = #{uri,jdbcType=VARCHAR},
       user = #{user,jdbcType=VARCHAR},
-      consumer = #{consumer,jdbcType=VARCHAR}
+      consumer = #{consumer,jdbcType=VARCHAR},
+      status_completed = #{status_completed,jdbcType=BIT}
     where annotation_id = #{annotation_id,jdbcType=VARCHAR}
   </update>
 </mapper>

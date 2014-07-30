@@ -59,23 +59,22 @@
 		<!-- <property name="useActualColumnNames" value="true"/> -->
 		<!-- </table> -->
 
-		<!-- <table schema="public" tableName="annotations" domainObjectName="Annotation" 
-			> -->
-		<!-- <property name="useActualColumnNames" value="true"/> -->
-		<!-- </table> -->
+		<table schema="public" tableName="annotations" domainObjectName="Annotation" >
+		<property name="useActualColumnNames" value="true"/>
+		</table>
 
 		<!-- <table schema="public" tableName="documents" domainObjectName="Document" 
 			> -->
 		<!-- <property name="useActualColumnNames" value="true"/> -->
 		<!-- </table> -->
 		
-		<table schema="public" tableName="facebook_posts" domainObjectName="FacebookPost">
-			<property name="useActualColumnNames" value="true" />
-		</table>
+<!-- 		<table schema="public" tableName="facebook_posts" domainObjectName="FacebookPost"> -->
+<!-- 			<property name="useActualColumnNames" value="true" /> -->
+<!-- 		</table> -->
 		
-		<table schema="public" tableName="twitter_posts" domainObjectName="TwitterPost">
-			<property name="useActualColumnNames" value="true" />
-		</table>
+<!-- 		<table schema="public" tableName="twitter_posts" domainObjectName="TwitterPost"> -->
+<!-- 			<property name="useActualColumnNames" value="true" /> -->
+<!-- 		</table> -->
 
 
 	</context>

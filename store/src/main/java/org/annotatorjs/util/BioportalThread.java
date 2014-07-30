@@ -37,9 +37,62 @@ import org.json.JSONObject;
 			this.createBioportalAnnotation(uuid, json);
 			ArrayList<String> array = getTagsFromJSON(json);
 			this.createBioportalTags(uuid, array);
+			this.setAnnotationCompleted(uuid);
 			
 		}
 		
+		private void setAnnotationCompleted(String uuid2) {
+
+
+			PreparedStatement preparedStmt = null;
+
+			
+				try
+			{
+					String query = "UPDATE annotations SET status_completed=? WHERE annotation_id=? ";
+					// create the mysql database connection
+
+					// create the mysql delete statement.
+					// i'm deleting the row where the id is "3", which corresponds to my
+					// "Barney Rubble" record.
+
+					preparedStmt = conn.prepareStatement(query);
+					preparedStmt.setInt(1, 1);
+					preparedStmt.setString(2, uuid2);
+
+
+
+					// execute the preparedstatement
+					preparedStmt.execute();
+
+
+			}
+			catch (SQLException ex) {
+				// handle any errors
+				System.out.println("SQLException: " + ex.getMessage());
+				System.out.println("SQLState: " + ex.getSQLState());
+				System.out.println("VendorError: " + ex.getErrorCode());
+			} finally {
+				// it is a good idea to release
+				// resources in a finally{} block
+				// in reverse-order of their creation
+				// if they are no-longer needed
+
+				if (preparedStmt != null) {
+					try {
+						preparedStmt.close();
+					} catch (SQLException sqlEx) { } // ignore
+
+					preparedStmt = null;
+				}
+
+
+			}
+
+		
+			
+		}
+
 		public String  getBioportalAnnotations(String text){
 
 			StringBuffer result = new StringBuffer();

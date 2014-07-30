@@ -27,9 +27,9 @@ public class AnnotationUtils {
 			AnnotationMapper mapper = sqlSession.getMapper(AnnotationMapper.class);
 			AnnotationExample example = new AnnotationExample();
 			if(StringUtils.equals(user, "all"))
-				example.createCriteria().andUriEqualTo(doi);
+				example.createCriteria().andUriEqualTo(doi).andStatus_completedEqualTo(true);
 			else
-				example.createCriteria().andUriEqualTo(doi).andUserEqualTo(user);
+				example.createCriteria().andUriEqualTo(doi).andUserEqualTo(user).andStatus_completedEqualTo(true);
 			
 			example.setOrderByClause("created DESC");
 			
@@ -69,7 +69,40 @@ public class AnnotationUtils {
 		
 		return tags;
 	}
+	
+	public static ArrayList<AnnotationWithBLOBs> getNew(AnnotationWithBLOBs lastannotation, String user)
+	{
+		
+		ArrayList<AnnotationWithBLOBs> annotations =  new ArrayList<AnnotationWithBLOBs>();
+		
+		try {
+			SqlSession sqlSession = MyBatis.getSession();
+			AnnotationMapper mapper = sqlSession.getMapper(AnnotationMapper.class);
+			AnnotationExample example = new AnnotationExample();
+			if(StringUtils.equals(user, "all"))
+				example.createCriteria().andUriEqualTo(lastannotation.getUri()).andCreatedGreaterThan(lastannotation.getCreated()).andStatus_completedEqualTo(true);
+			else
+				example.createCriteria().andUriEqualTo(lastannotation.getUri()).andUserEqualTo(user).andCreatedGreaterThan(lastannotation.getCreated()).andStatus_completedEqualTo(true);
+			
+			example.setOrderByClause("created DESC");
+			
+			annotations = (ArrayList<AnnotationWithBLOBs>) mapper.selectByExampleWithBLOBs(example);
+			
+			sqlSession.close();
 
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+//		System.out.println("Size: "+annotations.size());
+		
+		return annotations;
+		
+	}
+	
+	
 	public static Ranges getRanges(String annotation_id) {
 		Ranges ranges=null;
 		

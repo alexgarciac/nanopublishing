@@ -46,7 +46,7 @@ public class SocialThread implements Runnable {
 //		facebook.setOAuthAccessToken(new AccessToken("CAADW5nmJZCZCcBAIdV6nJtvvufeVlILOWvPC2h3"
 //				+ "ro6V2Nk7eOPNPufpAjZAZCkQwgVkzO82C4tIZAzjMeOFMUJm1FkgAV9I96ZCeA5azCg9JX0wmZC"
 //				+ "5QMpxDxgabKLnDHzRxZBaS5CX4EYoiAk7bCDIPV6ZBlRZCrIQ5TtiQLINO22N8ZAkyNbFZC1lK",null));
-		facebook.setOAuthAccessToken(new AccessToken("CAAUSUtecPBUBAGPBjzh1iBEwYOd6NtLC8YiZBtNanBfsZBlG1dtK3Emxb1sM4M0gjhlMZCJyvJeMoZBqPXQSt1Vn2SlHwYzyuxIipWtny14XsUWVJm6e0g3cpV4Px6t8pwwfIx58nEQOq1ksnWwAZAFdydg86jNlFAoZBED4IQ44gEhSjSHrZAX8SBtcnbaHssZD",null));
+		facebook.setOAuthAccessToken(new AccessToken("CAAUSUtecPBUBABqz5ZBFZCkAKW3OnGjHMrXdZAbFiTuL2vXmHjcunZCK8nn2ML79X2Mzaev54chj1hNrn4JawVPkUrC4Mldknb2sU9b6VCpOGZBTg7EAciUDAz1M3Yac8D6hIjiOqkJjaDfk9J338vr8ZAUNJebK8MKStEAgZC5CXIVdDTIr6LDzpksylYZCX5XWxw8cIqQkugZDZD",null));
 
 		//    	.setOAuthAppId("1427521897511957")
 		//	  .setOAuthAppSecret("9a447eb931f93131af68176c006a1a39")

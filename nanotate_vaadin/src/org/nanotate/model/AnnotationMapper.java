@@ -7,31 +7,34 @@ import org.nanotate.model.AnnotationExample;
 import org.nanotate.model.AnnotationWithBLOBs;
 
 public interface AnnotationMapper {
-    int countByExample(AnnotationExample example);
 
-    int deleteByExample(AnnotationExample example);
+	int countByExample(AnnotationExample example);
 
-    int deleteByPrimaryKey(String annotation_id);
+	int deleteByExample(AnnotationExample example);
 
-    int insert(AnnotationWithBLOBs record);
+	int deleteByPrimaryKey(String annotation_id);
 
-    int insertSelective(AnnotationWithBLOBs record);
+	int insert(AnnotationWithBLOBs record);
 
-    List<AnnotationWithBLOBs> selectByExampleWithBLOBs(AnnotationExample example);
+	int insertSelective(AnnotationWithBLOBs record);
 
-    List<Annotation> selectByExample(AnnotationExample example);
+	List<AnnotationWithBLOBs> selectByExampleWithBLOBs(AnnotationExample example);
 
-    AnnotationWithBLOBs selectByPrimaryKey(String annotation_id);
+	List<Annotation> selectByExample(AnnotationExample example);
 
-    int updateByExampleSelective(@Param("record") AnnotationWithBLOBs record, @Param("example") AnnotationExample example);
+	AnnotationWithBLOBs selectByPrimaryKey(String annotation_id);
 
-    int updateByExampleWithBLOBs(@Param("record") AnnotationWithBLOBs record, @Param("example") AnnotationExample example);
+	int updateByExampleSelective(@Param("record") AnnotationWithBLOBs record,
+			@Param("example") AnnotationExample example);
 
-    int updateByExample(@Param("record") Annotation record, @Param("example") AnnotationExample example);
+	int updateByExampleWithBLOBs(@Param("record") AnnotationWithBLOBs record,
+			@Param("example") AnnotationExample example);
 
-    int updateByPrimaryKeySelective(AnnotationWithBLOBs record);
+	int updateByExample(@Param("record") Annotation record,
+			@Param("example") AnnotationExample example);
 
-    int updateByPrimaryKeyWithBLOBs(AnnotationWithBLOBs record);
+	int updateByPrimaryKeySelective(AnnotationWithBLOBs record);
 
-    int updateByPrimaryKey(Annotation record);
-}
+	int updateByPrimaryKeyWithBLOBs(AnnotationWithBLOBs record);
+
+	int updateByPrimaryKey(Annotation record);}
