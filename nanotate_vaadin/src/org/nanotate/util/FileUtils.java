@@ -91,7 +91,7 @@ public class FileUtils implements Runnable{
 		
 		CloseableHttpClient httpClient = HttpClients.createDefault();
 		HttpPost uploadFile = new HttpPost("https://upload.view-api.box.com/1/documents");
-		uploadFile.setHeader("Authorization","Token 7tpuie82v51mlnfemhs76f28lid4gzof");
+		uploadFile.setHeader("Authorization","Token "+Nanotate_Properties.getInstance().getProperty("boxview.apikey"));
 
 		MultipartEntityBuilder builder = MultipartEntityBuilder.create();
 		builder.addTextBody("field1", "yes", ContentType.TEXT_PLAIN);
@@ -145,7 +145,7 @@ public class FileUtils implements Runnable{
 						conn.addRequestProperty("User-Agent", 
 							    "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0)");
 						conn.addRequestProperty("Authorization", 
-							    "Token 7tpuie82v51mlnfemhs76f28lid4gzof");
+							    "Token "+Nanotate_Properties.getInstance().getProperty("boxview.apikey"));
 
 						in = new BufferedInputStream(conn.getInputStream());
 						fout = new FileOutputStream(path+"/content.zip");
@@ -205,7 +205,7 @@ public class FileUtils implements Runnable{
  
 		//add request header
 		con.setRequestProperty("User-Agent", "Mozilla/5.0");
-		con.setRequestProperty("Authorization", "Token 7tpuie82v51mlnfemhs76f28lid4gzof");
+		con.setRequestProperty("Authorization", "Token "+Nanotate_Properties.getInstance().getProperty("boxview.apikey"));
  
 		int responseCode = con.getResponseCode();
 		System.out.println("\nSending 'GET' request to URL : " + url);

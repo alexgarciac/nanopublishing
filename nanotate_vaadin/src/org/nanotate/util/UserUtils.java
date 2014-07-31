@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.jasypt.util.password.BasicPasswordEncryptor;
+import org.nanotate.Nanotate_Properties;
 import org.nanotate.model.User;
 import org.nanotate.model.UserExample;
 import org.nanotate.model.UserMapper;
@@ -114,8 +115,8 @@ public class UserUtils {
 			{
 				facebook4j.conf.ConfigurationBuilder cb = new facebook4j.conf.ConfigurationBuilder();
 	        	cb.setDebugEnabled(true)
-	        	  .setOAuthAppId("1427521897511957")
-	        	  .setOAuthAppSecret("b58edb7c40ded996479db0f617f8ad04")
+	        	  .setOAuthAppId(Nanotate_Properties.getInstance().getProperty("facebook.app.id"))
+	        	  .setOAuthAppSecret(Nanotate_Properties.getInstance().getProperty("facebook.app.secret"))
 	        	  .setOAuthAccessToken(user.getFacebook_token());
 	        	facebook = new FacebookFactory(cb.build()).getInstance();
 			}
@@ -145,8 +146,8 @@ public class UserUtils {
 			{
 				twitter4j.conf.ConfigurationBuilder cb = new 	twitter4j.conf.ConfigurationBuilder();
 			    cb.setDebugEnabled(true)
-				.setOAuthConsumerKey("x8P2dt3hnTVcVDaq21smdfLf0")
-				.setOAuthConsumerSecret("VfC0A2FiI3Uq1v4NCRJktCpElFgQT7Ri0mxu6E9YsMQuEnpigL")
+				.setOAuthConsumerKey(Nanotate_Properties.getInstance().getProperty("twitter.app.id"))
+				.setOAuthConsumerSecret(Nanotate_Properties.getInstance().getProperty("twitter.app.secret"))
 				.setOAuthAccessToken(user.getTwitter_token())
 				.setOAuthAccessTokenSecret(user.getTwitter_token_secret());
 			    

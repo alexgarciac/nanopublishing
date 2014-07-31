@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.session.SqlSession;
+import org.nanotate.model.Annotation;
 import org.nanotate.model.AnnotationExample;
 import org.nanotate.model.AnnotationMapper;
 import org.nanotate.model.AnnotationWithBLOBs;
@@ -124,6 +125,36 @@ public class AnnotationUtils {
 		}
 		
 		return ranges;
+	}
+
+	public static boolean annotationsExists(String value, String user) {
+		
+		boolean ret=false;
+		
+		try {
+			SqlSession sqlSession = MyBatis.getSession();
+			AnnotationMapper mapper = sqlSession.getMapper(AnnotationMapper.class);
+			AnnotationExample example = new AnnotationExample();
+			if(StringUtils.equals(user, "all"))
+				example.createCriteria().andUriEqualTo(value).andStatus_completedEqualTo(true);
+			else
+				example.createCriteria().andUriEqualTo(value).andUserEqualTo(user).andStatus_completedEqualTo(true);
+			
+
+			
+			ArrayList<Annotation>annotations = (ArrayList<Annotation>) mapper.selectByExample(example);
+			
+			if(annotations.size()>0)
+				ret=true;
+			
+			sqlSession.close();
+
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return ret;
 	}
 	
 	

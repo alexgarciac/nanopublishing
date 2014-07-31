@@ -248,7 +248,7 @@ public class Main extends CustomComponent implements View{
 					String basepath = VaadinService.getCurrent()
 			                .getBaseDirectory().getAbsolutePath();
 					
-					System.out.println(basepath);
+//					System.out.println(basepath);
 					contentpanel.setContent(viewer);
 				}
 					

@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import org.annotatorjs.store.StoreProperties;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -120,8 +121,8 @@ import org.json.JSONObject;
 				nameValuePairs =  nameValuePairs.concat("&mappings=true"); //null, Automatic, Manual 
 				nameValuePairs =  nameValuePairs.concat("&text="+ URLEncoder.encode(text, "UTF-8"));  //"Melanoma is a malignant tumor of melanocytes which are found predominantly in skin but also in the bowel and the eye");
 				nameValuePairs =  nameValuePairs.concat("&format=json"); //Options are 'text', 'xml', 'tabDelimited'   
-				nameValuePairs =  nameValuePairs.concat("&apikey=028697e9-f8b5-4086-a252-a446b60b232b");
-				System.out.println(annotatorUrl+nameValuePairs);
+				nameValuePairs =  nameValuePairs.concat("&apikey="+StoreProperties.getInstance().getProperty("bioportal.apikey"));
+//				System.out.println(annotatorUrl+nameValuePairs);
 				HttpGet  method = new HttpGet(annotatorUrl+nameValuePairs);
 				// Execute the POST method
 
@@ -149,7 +150,7 @@ import org.json.JSONObject;
 						result.append(line);
 						result.append("\n");
 					}
-					System.out.println(result);
+//					System.out.println(result);
 				}
 			}
 			catch( Exception e ){
@@ -186,7 +187,7 @@ import org.json.JSONObject;
 			}
 			if(ret!="")
 				ret=ret.substring(0, ret.length()-1);
-			System.out.println(ret);
+//			System.out.println(ret);
 			
 			ArrayList<String> array = new ArrayList<String>();
 			array.addAll( Arrays.asList(ret.split(",")));

@@ -1,6 +1,7 @@
 package org.nanotate.ui;
 
 import org.apache.commons.lang3.StringUtils;
+import org.nanotate.Nanotate_Properties;
 import org.nanotate.ui.components.TwitterButton;
 import org.nanotate.util.UserUtils;
 import org.vaadin.addon.oauthpopup.buttons.FacebookButton;
@@ -266,7 +267,7 @@ Button.ClickListener {
 		
 		
 		// facebookButton_1
-		facebookButton_1 = new FacebookButton("1427521897511957","b58edb7c40ded996479db0f617f8ad04");
+		facebookButton_1 = new FacebookButton(Nanotate_Properties.getInstance().getProperty("facebook.app.id"),Nanotate_Properties.getInstance().getProperty("facebook.app.secret"));
 		facebookButton_1.setScope("email");
 		facebookButton_1.setScope("publish_stream");
 		facebookButton_1.setScope("public_profile");
@@ -282,8 +283,8 @@ Button.ClickListener {
 			  public void authSuccessful(String accessToken, String accessTokenSecret) {
 					facebook4j.conf.ConfigurationBuilder cb = new facebook4j.conf.ConfigurationBuilder();
 		        	cb.setDebugEnabled(true)
-		        	  .setOAuthAppId("1427521897511957")
-		        	  .setOAuthAppSecret("b58edb7c40ded996479db0f617f8ad04")
+		        	  .setOAuthAppId(Nanotate_Properties.getInstance().getProperty("facebook.app.id"))
+		        	  .setOAuthAppSecret(Nanotate_Properties.getInstance().getProperty("facebook.app.secret"))
 		        	  .setOAuthAccessToken(accessToken);
 		        	
 //		        	.setOAuthAppId("1427521897511957")
@@ -324,7 +325,7 @@ Button.ClickListener {
 		horizontalLayout_1.addComponent(facebookButton_1);
 
 // twitterButton_1
-		twitterButton_1 = new TwitterButton("x8P2dt3hnTVcVDaq21smdfLf0","VfC0A2FiI3Uq1v4NCRJktCpElFgQT7Ri0mxu6E9YsMQuEnpigL");
+		twitterButton_1 = new TwitterButton(Nanotate_Properties.getInstance().getProperty("twitter.app.id"),Nanotate_Properties.getInstance().getProperty("twitter.app.secret"));
 		twitterButton_1.setImmediate(false);
 		twitterButton_1.setWidth("-1px");
 		twitterButton_1.setHeight("-1px");
@@ -337,8 +338,8 @@ Button.ClickListener {
 				
 				   	twitter4j.conf.ConfigurationBuilder cb = new 	twitter4j.conf.ConfigurationBuilder();
 		            cb.setDebugEnabled(true)
-		        .setOAuthConsumerKey("x8P2dt3hnTVcVDaq21smdfLf0")
-		        .setOAuthConsumerSecret("VfC0A2FiI3Uq1v4NCRJktCpElFgQT7Ri0mxu6E9YsMQuEnpigL")
+		        .setOAuthConsumerKey(Nanotate_Properties.getInstance().getProperty("twitter.app.id"))
+		        .setOAuthConsumerSecret(Nanotate_Properties.getInstance().getProperty("twitter.app.secret"))
 		        .setOAuthAccessToken(accessToken)
 		        .setOAuthAccessTokenSecret(accessTokenSecret);
 		            

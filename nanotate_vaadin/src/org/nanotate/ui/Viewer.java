@@ -132,7 +132,8 @@ public class Viewer extends CustomComponent {
 		try {
 			JDBCConnectionPool pool = new SimpleJDBCConnectionPool(
 					"com.mysql.jdbc.Driver",
-					"jdbc:mysql://localhost:3306/annotatorjs", "annotatorjs", "annotator7541", 2, 5);
+					"jdbc:mysql://"+Nanotate_Properties.getInstance().getProperty("database.host")+"/"+Nanotate_Properties.getInstance().getProperty("database.name"),
+					Nanotate_Properties.getInstance().getProperty("database.user"), Nanotate_Properties.getInstance().getProperty("database.pass"), 2, 5);
 			TableQuery tq = new TableQuery("documents", pool);
 			tq.setVersionColumn("upload_date");
 			container = new SQLContainer(tq);
@@ -346,22 +347,25 @@ public class Viewer extends CustomComponent {
 					ArrayList<AnnotationWithBLOBs> newAnnotations;
 					if(StringUtils.equals(lastButton, "Mine"))
 					{
-						newAnnotations=AnnotationUtils.getNew(lastannotation, (String) getSession().getAttribute("user"));
-//						System.out.println("Hi");
-
-						if(newAnnotations.size()>0)
+						if (getSession()!=null)
 						{
+							newAnnotations=AnnotationUtils.getNew(lastannotation, (String) getSession().getAttribute("user"));
 
-							getUI().access(new Runnable() {
-								@Override
-								public void run() {
-									clearAnnotations();
-									loadAnnotations(lastannotation.getUri(), (String) getSession().getAttribute("user"));
-									
+							if(newAnnotations.size()>0)
+							{
 
-								}
-							});
+								getUI().access(new Runnable() {
+									@Override
+									public void run() {
+										clearAnnotations();
+										loadAnnotations(lastannotation.getUri(), (String) getSession().getAttribute("user"));
+										
+
+									}
+								});
+							}
 						}
+						
 					}
 					else
 					{
@@ -380,6 +384,32 @@ public class Viewer extends CustomComponent {
 						}
 					}
 				
+				}
+				else
+				{
+					final Object rowId = docs_table.getValue();
+					
+					
+					boolean newannotations;
+					
+					if(StringUtils.equals(lastButton, "Mine"))
+						newannotations = AnnotationUtils.annotationsExists((String)docs_table.getContainerProperty(rowId,"doi").getValue(),  (String) getSession().getAttribute("user"));
+					else
+						newannotations = AnnotationUtils.annotationsExists((String)docs_table.getContainerProperty(rowId,"doi").getValue(),  "all");
+					
+					if(newannotations)
+					getUI().access(new Runnable() {
+						@Override
+						public void run() {
+							
+							if(StringUtils.equals(lastButton, "Mine"))
+								loadAnnotations((String)docs_table.getContainerProperty(rowId,"doi").getValue(), (String) getSession().getAttribute("user"));
+							else
+								loadAnnotations((String)docs_table.getContainerProperty(rowId,"doi").getValue(), "all");
+
+						}
+					});
+					
 				}
 				
 			}

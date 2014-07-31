@@ -53,7 +53,7 @@ public class Connector {
 		try {
 
 			Class.forName("com.mysql.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mysql://"+DATABASE_HOST+":3306/"+DATABASE_NAME+"?" +
+			conn = DriverManager.getConnection("jdbc:mysql://"+DATABASE_HOST+"/"+DATABASE_NAME+"?" +
 					"user="+DATABASE_USER+"&password="+DATABASE_PASS);
 
 

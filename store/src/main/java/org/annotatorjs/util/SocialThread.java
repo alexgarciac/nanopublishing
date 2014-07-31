@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import org.annotatorjs.model.Annotation;
+import org.annotatorjs.store.StoreProperties;
 import org.apache.commons.lang3.StringUtils;
 
 import twitter4j.Status;
@@ -39,14 +40,14 @@ public class SocialThread implements Runnable {
 	private void sendToNanotateFacebook() {
 		facebook4j.conf.ConfigurationBuilder cb = new facebook4j.conf.ConfigurationBuilder();
 		cb.setDebugEnabled(true)
-		.setOAuthAppId("1427521897511957")
-		.setOAuthAppSecret("b58edb7c40ded996479db0f617f8ad04");
+		.setOAuthAppId(StoreProperties.getInstance().getProperty("facebook.app.id"))
+		.setOAuthAppSecret(StoreProperties.getInstance().getProperty("facebook.app.secret"));
 
 		Facebook facebook = new FacebookFactory(cb.build()).getInstance();
 //		facebook.setOAuthAccessToken(new AccessToken("CAADW5nmJZCZCcBAIdV6nJtvvufeVlILOWvPC2h3"
 //				+ "ro6V2Nk7eOPNPufpAjZAZCkQwgVkzO82C4tIZAzjMeOFMUJm1FkgAV9I96ZCeA5azCg9JX0wmZC"
 //				+ "5QMpxDxgabKLnDHzRxZBaS5CX4EYoiAk7bCDIPV6ZBlRZCrIQ5TtiQLINO22N8ZAkyNbFZC1lK",null));
-		facebook.setOAuthAccessToken(new AccessToken("CAAUSUtecPBUBABqz5ZBFZCkAKW3OnGjHMrXdZAbFiTuL2vXmHjcunZCK8nn2ML79X2Mzaev54chj1hNrn4JawVPkUrC4Mldknb2sU9b6VCpOGZBTg7EAciUDAz1M3Yac8D6hIjiOqkJjaDfk9J338vr8ZAUNJebK8MKStEAgZC5CXIVdDTIr6LDzpksylYZCX5XWxw8cIqQkugZDZD",null));
+		facebook.setOAuthAccessToken(new AccessToken(StoreProperties.getInstance().getProperty("nanotate.facebook.access.token"),null));
 
 		//    	.setOAuthAppId("1427521897511957")
 		//	  .setOAuthAppSecret("9a447eb931f93131af68176c006a1a39")
@@ -80,16 +81,16 @@ public class SocialThread implements Runnable {
 
 		twitter4j.conf.ConfigurationBuilder cb = new 	twitter4j.conf.ConfigurationBuilder();
 		cb.setDebugEnabled(true)
-		.setOAuthConsumerKey("x8P2dt3hnTVcVDaq21smdfLf0")
-		.setOAuthConsumerSecret("VfC0A2FiI3Uq1v4NCRJktCpElFgQT7Ri0mxu6E9YsMQuEnpigL");
+		.setOAuthConsumerKey(StoreProperties.getInstance().getProperty("twitter.app.id"))
+		.setOAuthConsumerSecret(StoreProperties.getInstance().getProperty("twitter.app.secret"));
 
 		TwitterFactory tf = new TwitterFactory(cb.build());
 		Twitter twitter = tf.getInstance();
 
 //		twitter.setOAuthAccessToken(new twitter4j.auth.AccessToken("2326910304-Dpi1MBlPBq37KyUxBmd03jkkFxhXLzffds1cG5X",
 //				"iCmxAjp0XTtmgpuoV7fKItPajXzqTJkj9jetGLTcQnEOG"));
-		twitter.setOAuthAccessToken(new twitter4j.auth.AccessToken("2326910304-oss3EGjWxQZ1W6nChG9VxMfHypcVt2WEJBSisFm",
-				"7cc75WMlDw8Q1FLx6SsaryrmBQymCKBChs4ellSOmZgG4"));
+		twitter.setOAuthAccessToken(new twitter4j.auth.AccessToken(StoreProperties.getInstance().getProperty("nanotate.twitter.access.token"),
+				StoreProperties.getInstance().getProperty("nanotate.twitter.secret")));
 
 
 		ArrayList<String> tags =this.getAllTagsForAnnotation();
