@@ -188,7 +188,7 @@ public class AnnotationUI extends CustomComponent {
 
 				@Override
 				public void click(ClickEvent event) {
-					if(getSession().getAttribute("twitter")==null)
+					if(getSession().getAttribute("facebook")==null)
 						Notification.show("You must connect with Facebook first",
 				                  "Go to Home screen to connect with Facebook",
 				                  Notification.Type.WARNING_MESSAGE);

@@ -321,7 +321,7 @@ Button.ClickListener {
 				
 			}});
 		
-		facebookButton_1.setPopupWindowFeatures("resizable,width=400,height=600");
+		facebookButton_1.setPopupWindowFeatures("resizable,width=1200,height=600");
 		horizontalLayout_1.addComponent(facebookButton_1);
 
 // twitterButton_1
