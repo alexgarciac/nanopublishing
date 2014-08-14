@@ -88,6 +88,7 @@ public class Home extends CustomComponent {
 	
 		buildMainLayout();
 		setCompositionRoot(mainLayout);
+		
 
 		// TODO add user code here
 	}
@@ -389,7 +390,7 @@ public class Home extends CustomComponent {
 		label_2.setWidth("-1px");
 		label_2.setHeight("-1px");
 		label_2.setStyleName("home-label");
-		label_2.setValue("Uploaded documents:");
+		label_2.setValue("Documents:");
 		verticalLayout_3.addComponent(label_2);
 		verticalLayout_3.setComponentAlignment(label_2, new Alignment(6));
 		
@@ -398,7 +399,7 @@ public class Home extends CustomComponent {
 		label_4.setImmediate(false);
 		label_4.setWidth("-1px");
 		label_4.setHeight("-1px");
-		label_4.setValue("Annotations made:");
+		label_4.setValue("Annotations:");
 		label_4.setStyleName("home-label");
 		verticalLayout_3.addComponent(label_4);
 		verticalLayout_3.setComponentAlignment(label_4, new Alignment(6));
@@ -453,6 +454,11 @@ public class Home extends CustomComponent {
 		panel_2.setContent(verticalLayout_5);
 		
 		return panel_2;
+	}
+	
+	public void refreshCounters(String username){
+		label_6.setValue(String.valueOf(UserUtils.getNumberOfAnnotations(username)));
+		label_5.setValue(String.valueOf(UserUtils.getNumberOfDocuments(username)));
 	}
 
 }

@@ -241,7 +241,12 @@ public class Main extends CustomComponent implements View{
 			@Override
 			public void buttonPush(Button.ClickEvent event, boolean pushed) {
 				if(event.getButton().getCaption().equals("Home"))
-						contentpanel.setContent(home);
+				{
+					home.refreshCounters((String) getSession().getAttribute("user"));
+					contentpanel.setContent(home);
+					
+				}
+						
 				else{
 
 					
@@ -438,6 +443,7 @@ public class Main extends CustomComponent implements View{
 		}
 		
 		home.setName(UserUtils.getName((String) getSession().getAttribute("user")));
+		home.refreshCounters((String) getSession().getAttribute("user"));
 		viewer.initContainer((String) getSession().getAttribute("user"));
 		
 		contentpanel.setContent(home);

@@ -6,6 +6,10 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.jasypt.util.password.BasicPasswordEncryptor;
 import org.nanotate.Nanotate_Properties;
+import org.nanotate.model.AnnotationExample;
+import org.nanotate.model.AnnotationMapper;
+import org.nanotate.model.DocumentExample;
+import org.nanotate.model.DocumentMapper;
 import org.nanotate.model.User;
 import org.nanotate.model.UserExample;
 import org.nanotate.model.UserMapper;
@@ -215,6 +219,41 @@ public class UserUtils {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+	}
+	
+	public static int getNumberOfAnnotations(String username){
+		int ret=0;
+		try {
+			SqlSession sqlSession = MyBatis.getSession();
+			AnnotationMapper mapper = sqlSession.getMapper(AnnotationMapper.class);
+			AnnotationExample example = new AnnotationExample();
+			example.createCriteria().andUserEqualTo(username);
+			ret = mapper.countByExample(example);
+			sqlSession.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return ret;
+	}
+	
+	public static int getNumberOfDocuments(String username){
+		
+		
+		int ret=0;
+		try {
+			SqlSession sqlSession = MyBatis.getSession();
+			DocumentMapper mapper = sqlSession.getMapper(DocumentMapper.class);
+			DocumentExample example = new DocumentExample();
+			example.createCriteria().andUploaded_byEqualTo(username);
+			ret = mapper.countByExample(example);
+			sqlSession.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return ret;
 		
 	}
 	

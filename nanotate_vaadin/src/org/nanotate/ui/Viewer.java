@@ -84,27 +84,27 @@ public class Viewer extends CustomComponent {
 		setCompositionRoot(mainLayout);
 
 		annotationuis=new ArrayList<AnnotationUI>();
-		userbutton.setCaption("Mine");
-		userbutton.setDescription("Mine annotations");
-		globebutton.setCaption("All");
+		userbutton.setCaption("My annotations");
+		userbutton.setDescription("My annotations annotations");
+		globebutton.setCaption("All annotations");
 		globebutton.setDescription("All annotations");
 		toolbar_1.setStyleName("annotations-toolbar");
-		lastButton="Mine";
+		lastButton="My annotations";
 		toolbar_1.addComponent(new PushButton(new PushButton.PushButtonListener() {
 			@Override
 			public void buttonPush(Button.ClickEvent event, boolean pushed) {
 
 				Object rowId = docs_table.getValue();
-				if(event.getButton().getCaption().equals("Mine")){
+				if(event.getButton().getCaption().equals("My annotations")){
 					clearAnnotations();
 					loadAnnotations((String)docs_table.getContainerProperty(rowId,"doi").getValue(), (String) getSession().getAttribute("user"));
-					lastButton="Mine";
+					lastButton="My annotations";
 				}		
 				else{
 
 					clearAnnotations();
-					loadAnnotations((String)docs_table.getContainerProperty(rowId,"doi").getValue(), "all");
-					lastButton="all";
+					loadAnnotations((String)docs_table.getContainerProperty(rowId,"doi").getValue(), "All annotations");
+					lastButton="All annotations";
 
 				}
 
@@ -138,7 +138,7 @@ public class Viewer extends CustomComponent {
 			tq.setVersionColumn("upload_date");
 			container = new SQLContainer(tq);
 			container.addContainerFilter(new Compare.Equal("uploaded_by", user));
-			docs_table= new Table();
+			docs_table= new Table("Documents");
 			docs_table.setContainerDataSource(container);
 			docs_table.setSelectable(true);
 			docs_table.setNullSelectionAllowed(false);
@@ -170,7 +170,7 @@ public class Viewer extends CustomComponent {
 					actual_source=Nanotate_Properties.getInstance().getProperty("host")+"/repository/"+uuid+"/index.html#";
 					embedded_1.setSource(new ExternalResource(actual_source+"username="+getSession().getAttribute("user")));
 					userbutton.click();
-					lastButton="Mine";
+					lastButton="My annotations";
 					clearAnnotations();
 					loadAnnotations((String)docs_table.getContainerProperty(rowId,"doi").getValue(), (String) getSession().getAttribute("user"));
 					
@@ -256,7 +256,7 @@ public class Viewer extends CustomComponent {
 		embedded_1.setHeight("100.0%");
 		embedded_1
 		.setSource(new ExternalResource(
-				"http://local.host:8080/repository/ad06b023d1204f08af56d4e95d2d8cae/index.html"));
+				"199.102.237.69:9090/repository/default.html"));
 		embedded_1.setType(2);
 		embedded_1.setMimeType("image/png");
 		mainLayout.addComponent(embedded_1,
@@ -345,7 +345,7 @@ public class Viewer extends CustomComponent {
 					
 					final AnnotationWithBLOBs lastannotation = annotations_data.get(0);
 					ArrayList<AnnotationWithBLOBs> newAnnotations;
-					if(StringUtils.equals(lastButton, "Mine"))
+					if(StringUtils.equals(lastButton, "My annotations"))
 					{
 						if (getSession()!=null)
 						{
@@ -369,7 +369,7 @@ public class Viewer extends CustomComponent {
 					}
 					else
 					{
-						newAnnotations=AnnotationUtils.getNew(lastannotation, "all");
+						newAnnotations=AnnotationUtils.getNew(lastannotation, "All annotations");
 						if(newAnnotations.size()>0)
 						{
 
@@ -377,7 +377,7 @@ public class Viewer extends CustomComponent {
 								@Override
 								public void run() {
 									clearAnnotations();
-									loadAnnotations(lastannotation.getUri(), "all");
+									loadAnnotations(lastannotation.getUri(), "All annotations");
 
 								}
 							});
@@ -392,20 +392,20 @@ public class Viewer extends CustomComponent {
 					
 					boolean newannotations;
 					
-					if(StringUtils.equals(lastButton, "Mine"))
+					if(StringUtils.equals(lastButton, "My annotations"))
 						newannotations = AnnotationUtils.annotationsExists((String)docs_table.getContainerProperty(rowId,"doi").getValue(),  (String) getSession().getAttribute("user"));
 					else
-						newannotations = AnnotationUtils.annotationsExists((String)docs_table.getContainerProperty(rowId,"doi").getValue(),  "all");
+						newannotations = AnnotationUtils.annotationsExists((String)docs_table.getContainerProperty(rowId,"doi").getValue(),  "All annotations");
 					
 					if(newannotations)
 					getUI().access(new Runnable() {
 						@Override
 						public void run() {
 							
-							if(StringUtils.equals(lastButton, "Mine"))
+							if(StringUtils.equals(lastButton, "My annotations"))
 								loadAnnotations((String)docs_table.getContainerProperty(rowId,"doi").getValue(), (String) getSession().getAttribute("user"));
 							else
-								loadAnnotations((String)docs_table.getContainerProperty(rowId,"doi").getValue(), "all");
+								loadAnnotations((String)docs_table.getContainerProperty(rowId,"doi").getValue(), "All annotations");
 
 						}
 					});
