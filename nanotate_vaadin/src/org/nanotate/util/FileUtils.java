@@ -110,7 +110,7 @@ public class FileUtils implements Runnable{
 			String theString = writer.toString();
 			JSONObject json = new JSONObject(theString);
 			docid=json.getString("id");
-			System.out.println(theString+" "+docid);
+//			System.out.println(theString+" "+docid);
 		} catch (ClientProtocolException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -208,8 +208,8 @@ public class FileUtils implements Runnable{
 		con.setRequestProperty("Authorization", "Token "+Nanotate_Properties.getInstance().getProperty("boxview.apikey"));
  
 		int responseCode = con.getResponseCode();
-		System.out.println("\nSending 'GET' request to URL : " + url);
-		System.out.println("Response Code : " + responseCode);
+//		System.out.println("\nSending 'GET' request to URL : " + url);
+//		System.out.println("Response Code : " + responseCode);
  
 		BufferedReader in = new BufferedReader(
 		        new InputStreamReader(con.getInputStream()));
@@ -252,7 +252,7 @@ public class FileUtils implements Runnable{
 	    	   String fileName = ze.getName();
 	           File newFile = new File(path + File.separator + fileName);
 	 
-	           System.out.println("file unzip : "+ newFile.getAbsoluteFile());
+//	           System.out.println("file unzip : "+ newFile.getAbsoluteFile());
 	 
 	            //create all non exists folders
 	            //else you will hit FileNotFoundException for compressed folder
@@ -272,7 +272,7 @@ public class FileUtils implements Runnable{
 	        zis.closeEntry();
 	    	zis.close();
 	 
-	    	System.out.println("Done");
+//	    	System.out.println("Done");
 	 
 	    }catch(IOException ex){
 	       ex.printStackTrace(); 
@@ -312,10 +312,10 @@ public class FileUtils implements Runnable{
 					doi_end_index=text.indexOf("\n", doi_begin_index);
 				
 				
-				System.out.println("text= "+ text.substring(doi_begin_index, doi_begin_index+17));
-				System.out.println("text.indexOf"+text.indexOf("\n", doi_begin_index));
-				System.out.println("doi_begin_index= "+ doi_begin_index);
-				System.out.println("doi_end_index= "+ doi_end_index);
+//				System.out.println("text= "+ text.substring(doi_begin_index, doi_begin_index+17));
+//				System.out.println("text.indexOf"+text.indexOf("\n", doi_begin_index));
+//				System.out.println("doi_begin_index= "+ doi_begin_index);
+//				System.out.println("doi_end_index= "+ doi_end_index);
 				
 				doi= "http://dx.doi.org/"+text.substring(doi_begin_index, doi_end_index)
 						.replace("\n", "")
@@ -377,8 +377,8 @@ public class FileUtils implements Runnable{
 	 
 	 
 			int responseCode = con.getResponseCode();
-			System.out.println("\nSending 'GET' request to URL : " + url);
-			System.out.println("Response Code : " + responseCode);
+//			System.out.println("\nSending 'GET' request to URL : " + url);
+//			System.out.println("Response Code : " + responseCode);
 	 
 			BufferedReader in = new BufferedReader(
 			        new InputStreamReader(con.getInputStream(), "UTF-8"));
@@ -479,7 +479,7 @@ public class FileUtils implements Runnable{
 		}
  
 		for (File f : files) {
-			System.out.println("merging: " + f.getName());
+//			System.out.println("merging: " + f.getName());
 			FileInputStream fis;
 			try {
 				fis = new FileInputStream(f);

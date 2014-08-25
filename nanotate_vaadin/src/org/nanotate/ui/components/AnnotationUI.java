@@ -242,7 +242,7 @@ public class AnnotationUI extends CustomComponent {
 			@Override
 			public void click(ClickEvent event) {
 				viewer.setSource(new ExternalResource(location.substring(0, location.indexOf("#")+1)+range.getStart()));
-				System.out.println("Holi: "+location.substring(0, location.indexOf("#")+1)+range.getStart());
+//				System.out.println("Holi: "+location.substring(0, location.indexOf("#")+1)+range.getStart());
 
 			}};
 

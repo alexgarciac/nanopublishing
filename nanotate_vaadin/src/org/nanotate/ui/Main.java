@@ -346,7 +346,7 @@ public class Main extends CustomComponent implements View{
     			outputStream.write(bytes, 0, read);
     		}
      
-    		System.out.println("Done!");
+//    		System.out.println("Done!");
      
     	} catch (IOException e) {
     		e.printStackTrace();

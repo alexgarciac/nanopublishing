@@ -79,7 +79,7 @@ public class TweetComposer extends CustomComponent {
 			public void buttonClick(ClickEvent event) {
 				Twitter twitter = (Twitter) getSession().getAttribute("twitter");
 				try {
-					System.out.println("Lenght: "+tweetBox.getValue().length());
+//					System.out.println("Lenght: "+tweetBox.getValue().length());
 					String message = tweetBox.getValue()+" #Nanotate "+annotation.getUri();
 					Status data = twitter.updateStatus(message);
 					SqlSession sqlSession = MyBatis.getSession();
