@@ -21,7 +21,7 @@ public class Nanotate_UI extends UI {
 	
 	Navigator navigator;
 	
-	protected boolean initializaded = false;
+
 
 	@WebServlet(value = "/*", asyncSupported = true)
 	@VaadinServletConfiguration(productionMode = false, ui = Nanotate_UI.class, widgetset="org.nanotate.widgetset.Nanotate_vaadinWidgetset")
@@ -39,10 +39,9 @@ public class Nanotate_UI extends UI {
 		
         navigator.addView("", new Login());
         navigator.addView("signup", new SignUp());
-        navigator.addView("main", new Main(this));
+        navigator.addView("main", new Main());
         
         
-        initializaded = true;
 		
 
 		
